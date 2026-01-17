@@ -1,2 +1,35 @@
-<p>personas works!</p>,
+<h2>Ingrese el Nombre de la Perosna</h2>
+<form [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre:</mat-label>
+    <input matInput [formControl] = "form.controls.nombre"/>
+    @if (formUtilidades.isvalidField(form,'nombre')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"nombre")}}</mat-error>
+    }
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Apellido:</mat-label>
+    <input matInput [formControl] = "form.controls.apellido" />
+    @if (formUtilidades.isvalidField(form,'apellido')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"apellido")}}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Cedula:</mat-label>
+    <input matInput [formControl] = "form.controls.cedula"/>
+    @if (formUtilidades.isvalidField(form,'cedula')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
+    }
+  </mat-form-field>
+  <app-correos></app-correos>
+  <div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    Continuar</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div>
+</form>
 

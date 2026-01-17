@@ -7,30 +7,31 @@ import { Telefonos } from './formulario-personas/telefonos/telefonos';
 import { Categorias } from './categorias/categorias';
 
 export const routes: Routes = [
-
-  {path:'',
-    component: FormularioPersonas,
-    children:
-    [
-      {
-        path:'personas',
-        component: Personas
-      },
+  {
+    path:'',
+    component:FormularioPersonas
+  },
+  {
+    path:'personas',
+    component:Personas,
+    children:[
       {
         path:'correos',
         component:Correos
       },
       {
+        path:'telefonos',
+        component:Telefonos
+      },
+      {
         path:'dirreciones',
         component:Dirreciones
       },
-      {
-        path:'telefonos',
-        component:Telefonos
-      }
+
 
     ]
   },
+
   {
     path:'categorias',
     component:Categorias
