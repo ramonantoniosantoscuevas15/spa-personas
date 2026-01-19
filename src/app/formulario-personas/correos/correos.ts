@@ -50,9 +50,9 @@ export class Correos implements ControlValueAccessor,Validator {
   formUtilidades = FormUtilidades
 
   form = this.fb.group({
-    correo:['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
+
     correos:this.fb.array([
-      [''],
+      ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
     ])
   })
 
@@ -66,8 +66,12 @@ export class Correos implements ControlValueAccessor,Validator {
   }
 
   newcorreo(){
-    if(this.correos.invalid) return
+
     this.correos.push(this.fb.control('',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]))
+  }
+  onDeletecorreo(index:number){
+    this.correos.removeAt(index)
+
   }
 
   agregarcorreo(){

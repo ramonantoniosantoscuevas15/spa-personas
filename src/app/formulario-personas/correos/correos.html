@@ -3,20 +3,38 @@
     <label class="col-sm-3 col-form-label">Agregar Correos</label>
     <div class="col-sm-9">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Correo" [formControl]="form.controls.correo" />
-       
 
-
-        <button class="btn btn-outline-primary" type="button">
-          Añadir
+        <button class="btn btn-outline-primary" type="button" (click)="newcorreo()">
+          Agregar otro Correo
         </button>
 
       </div>
-      @if ( formUtilidades.isvalidField(form,"correo") ) {
-          <span class="form-text text-danger">
-            {{ formUtilidades.getFieldError(form,"correo") }}
-          </span>
-          }
+
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Correos</label>
+
+    <div class="col-sm-9" formArrayName="correos">
+
+      @for (correo of correos.controls; track $index; let i = $index) {
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+
+
+        <input placeholder="Correo" matInput [formControlName]="i" >
+
+        @if (formUtilidades.isValidFieldInArray(correos,i)) {
+        <mat-error>{{formUtilidades.getFieldErrorInArray(correos,i)}}</mat-error>
+
+        }
+      </mat-form-field>
+      <button  (click)="onDeletecorreo(i)" class="btn btn-outline-danger" type="button">eliminar</button>
+
+      </div>
+
+
+      }
     </div>
   </div>
   <!-- <div formArrayName="correos">
