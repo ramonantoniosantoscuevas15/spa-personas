@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "bootstrap/scss/bootstrap" as *;
 .primary{
   @include mat.theme(
     (

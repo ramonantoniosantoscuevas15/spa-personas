@@ -1,35 +1,75 @@
 <h2>Ingrese el Nombre de la Perosna</h2>
 <form [formGroup]="form">
-  <mat-form-field appearance="outline">
-    <mat-label>Nombre:</mat-label>
-    <input matInput [formControl] = "form.controls.nombre"/>
-    @if (formUtilidades.isvalidField(form,'nombre')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"nombre")}}</mat-error>
-    }
+  <div class="row">
+  <div class="col">
 
-  </mat-form-field>
+      <!-- Campo de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre de la Persona"
+            [formControl] = "form.controls.nombre"
+          />
 
-  <mat-form-field appearance="outline">
-    <mat-label>Apellido:</mat-label>
-    <input matInput [formControl] = "form.controls.apellido" />
-    @if (formUtilidades.isvalidField(form,'apellido')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"apellido")}}</mat-error>
-    }
-  </mat-form-field>
+          @if ( formUtilidades.isvalidField(form,"nombre") ) {
+          <span class="form-text text-danger">
+            {{ formUtilidades.getFieldError(form,"nombre") }}
+          </span>
+          }
+        </div>
+      </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Cedula:</mat-label>
-    <input matInput [formControl] = "form.controls.cedula"/>
-    @if (formUtilidades.isvalidField(form,'cedula')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
-    }
-  </mat-form-field>
-  <app-correos></app-correos>
-  <div class="contenedor-botones">
-    <button mat-flat-button
-    [disabled]="form.invalid">
-    Continuar</button>
-    <a mat-stroked-button routerLink="/">Cancelar</a>
+      <!-- Campo de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Apellido</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Apellido de la Persona"
+            [formControl] = "form.controls.apellido"
+          />
+
+          @if ( formUtilidades.isvalidField(form,"apellido") ) {
+          <span class="form-text text-danger">
+            {{ formUtilidades.getFieldError(form,"apellido") }}
+          </span>
+          }
+        </div>
+      </div>
+
+      <!-- Campo de existencias -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Cedula</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Cedula de la Perosna"
+            [formControl] = "form.controls.cedula"
+          />
+
+          @if ( formUtilidades.isvalidField(form,"cedula") ) {
+          <span class="form-text text-danger">
+            {{ formUtilidades.getFieldError(form,"cedula") }}
+          </span>
+          }
+        </div>
+      </div>
+      <app-correos></app-correos>
+
+      <div class="row">
+        <div class="col">
+          <button [disabled]="form.invalid" mat-flat-button type="submit" class="btn btn-primary float-end">
+            Guardar
+          </button>
+        </div>
+      </div>
+
   </div>
+</div>
 </form>
 
