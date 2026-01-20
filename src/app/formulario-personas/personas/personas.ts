@@ -6,13 +6,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Correos } from "../correos/correos";
 import { Dirreciones } from "../dirreciones/dirreciones";
+import { Telefonos } from "../telefonos/telefonos";
 
 
 
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos],
   templateUrl: './personas.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 

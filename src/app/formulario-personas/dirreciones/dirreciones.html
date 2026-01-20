@@ -1,13 +1,73 @@
-<form>
+<form [formGroup]="form">
   <h2>Ingrese la Dirrecion</h2>
 
-   
-    <div class="col-sm-9">
-  <mat-form-field appearance="outline">
+
+    <mat-form-field appearance="outline">
     <mat-label>Tipo:</mat-label>
-    <input matInput placeholder="ej trabajo, casa, etc.">
+    <input matInput placeholder="ej trabajo, casa, etc."
+    [formControl]="form.controls.tipo"
+     />
+     @if (formUtilidades.isvalidField(form,'tipo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
+
 
   </mat-form-field>
+  <div formArrayName="ubicacion">
+    @for (ubicaciones of ubicacion.controls; track $index; let i =$index ) {
+
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <input placeholder="Ubicacion" matInput [formControlName]="i">
+          @if (formUtilidades.isValidFieldInArray(ubicacion,i)) {
+            <mat-error>{{formUtilidades.getFieldErrorInArray(ubicacion,i)}}</mat-error>
+          }
+        </mat-form-field>
+        <button (click)="onDeleteUbicacion(i)"  class="btn btn-outline-danger" type="button">eliminar</button>
+
+      </div>
+    }
+    <div>
+
+        <button class="btn btn-outline-primary" type="button" (click)="newubicacion()">
+          Agregar otra Ubicacion
+        </button>
+
+      </div>
+
   </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ciudad:</mat-label>
+    <input matInput [formControl]="form.controls.ciudad"   />
+     @if (formUtilidades.isvalidField(form,'ciudad')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"ciudad")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Provincia:</mat-label>
+    <input matInput [formControl]="form.controls.provincia" />
+       @if (formUtilidades.isvalidField(form,'provincia')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"provincia")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo Postal:</mat-label>
+    <input matInput [formControl]="form.controls.codigopostal" />
+       @if (formUtilidades.isvalidField(form,'codigopostal')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"codigopostal")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Pais:</mat-label>
+    <input matInput [formControl]="form.controls.pais"    />
+       @if (formUtilidades.isvalidField(form,'pais')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"pais")}}</mat-error>
+    }
+
+  </mat-form-field>
 
 </form>

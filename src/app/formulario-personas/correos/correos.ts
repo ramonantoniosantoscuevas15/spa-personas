@@ -59,11 +59,7 @@ export class Correos implements ControlValueAccessor,Validator {
   get correos(){
     return this.form.get('correos') as FormArray
   }
-  isValidFieldInArray(formArray: FormArray, index:number){
-    return(
-      formArray.controls[index].errors && formArray.controls[index].touched
-    )
-  }
+  
 
   newcorreo(){
 

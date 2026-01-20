@@ -1,21 +1,9 @@
 <form [formGroup]="form">
+<h2>Ingrese el Correo</h2>
   <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Agregar Correos</label>
-    <div class="col-sm-9">
-      <div class="input-group">
 
-        <button class="btn btn-outline-primary" type="button" (click)="newcorreo()">
-          Agregar otro Correo
-        </button>
 
-      </div>
-
-    </div>
-  </div>
-  <div class="mb-3 row">
-    <label class="col-sm-3 col-form-label">Correos</label>
-
-    <div class="col-sm-9" formArrayName="correos">
+    <div  formArrayName="correos">
 
       @for (correo of correos.controls; track $index; let i = $index) {
       <div class="input-group">
@@ -37,6 +25,16 @@
       }
     </div>
   </div>
+
+      <div>
+
+        <button class="btn btn-outline-primary" type="button" (click)="newcorreo()">
+          Agregar otro Correo
+        </button>
+
+      </div>
+
+
   <!-- <div formArrayName="correos">
 
   @for (correo of correos.controls; track $index; let i = $index) {

@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { MatFormField, MatLabel } from "@angular/material/form-field";
-import { MatInput } from "@angular/material/input";
+import { MatFormField, MatLabel, MatFormFieldModule } from "@angular/material/form-field";
+import { MatInput, MatInputModule } from "@angular/material/input";
 import { FormUtilidades } from '../../utils/form-utilidades';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-dirreciones',
-  imports: [MatFormField, MatLabel, MatInput],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule,],
   templateUrl: './dirreciones.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,4 +24,18 @@ form = this.fb.group({
 
   })
 
+  get ubicacion(){
+    return this.form.get('ubicacion') as FormArray
+  }
+
+  onDeleteUbicacion(index:number){
+    this.ubicacion.removeAt(index)
+
+  }
+
+  newubicacion(){
+    this.ubicacion.push(this.fb.control('', [Validators.required, Validators.minLength(3)]))
+  }
+
 }
+

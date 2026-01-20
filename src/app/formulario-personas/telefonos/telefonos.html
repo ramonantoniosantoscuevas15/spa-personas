@@ -1,1 +1,44 @@
-<p>telefonos works!</p>,
+<h2>Ingrese el Telefono</h2>
+<form [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo</mat-label>
+    <input placeholder="Ej casa,trabajo,etc" matInput [formControl]="form.controls.tipo" formControlName="tipo">
+    @if (formUtilidades.isvalidField(form,'tipo')) {
+    <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo Pais</mat-label>
+    <input placeholder="Ex. +809" matInput [formControl]="form.controls.codigopais" formControlName="codigopais">
+    @if (formUtilidades.isvalidField(form,'codigopais')) {
+    <mat-error>{{formUtilidades.getFieldError(form,"codigopais")}}</mat-error>
+    }
+  </mat-form-field>
+
+  <div formArrayName="numero">
+    @for (numeros of numero.controls; track $index; let i = $index) {
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <input placeholder="numero"  matInput [formControlName]="i">
+          @if (formUtilidades.isValidFieldInArray(numero,i)) {
+            <mat-error>{{formUtilidades.getFieldErrorInArray(numero,i)}}</mat-error>
+          }
+        </mat-form-field>
+        <button (click)="onDeletenumero(i)"  class="btn btn-outline-danger" type="button">eliminar</button>
+
+      </div>
+    }
+    <div>
+
+        <button class="btn btn-outline-primary" type="button" (click)="newnumero()">
+          Agregar otro Numero
+        </button>
+
+      </div>
+
+  </div>
+
+
+</form>
