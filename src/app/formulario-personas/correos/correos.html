@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form (submit)="agregarcorreo()" [formGroup]="form">
 <h2>Ingrese el Correo</h2>
   <div class="mb-3 row">
 
@@ -33,6 +33,12 @@
         </button>
 
       </div>
+      <div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    Insertar Correo</button>
+
+  </div>
 
 
   <!-- <div formArrayName="correos">

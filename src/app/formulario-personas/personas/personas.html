@@ -1,5 +1,5 @@
 <h2>Ingrese Los Datos de la  Perosna</h2>
-<form [formGroup]="form">
+<form (submit)="guardarPersonas()" [formGroup]="form">
  <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
     <input matInput [formControl] = "form.controls.nombre"/>
@@ -24,9 +24,9 @@
       <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-      <app-correos></app-correos>
-      <app-dirreciones></app-dirreciones>
-      <app-telefonos></app-telefonos>
+      <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
+      <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
+      <app-telefonos (posttelefono)="agregartelefono($event)"></app-telefonos>
 
       <div class="contenedor-botones">
     <button mat-flat-button

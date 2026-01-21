@@ -13,8 +13,8 @@ export interface CrearpersonaDTO{
   nombre:string,
   apellido:string,
   cedula:string,
-  listacorreos: CrearcorreoDTO,
-  listatelefonos:CreartelefonoDTO
-  listadirreciones:CreardirrecionesDTO
+  listacorreos: CrearcorreoDTO[],
+  listatelefonos:CreartelefonoDTO[],
+  listadirreciones:CreardirrecionesDTO[]
 
 }

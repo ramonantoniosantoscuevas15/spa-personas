@@ -8,6 +8,6 @@ export interface telefonoDTO {
 export interface CreartelefonoDTO {
   tipo: string,
   codigopais: string,
-  numero: number
+  numero: []
 
 }

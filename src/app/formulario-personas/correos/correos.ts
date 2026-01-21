@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, forwardRef, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormBuilder, Validators, FormArray, FormControl, ControlValueAccessor, Validator, AbstractControl, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
+import { CrearcorreoDTO } from './correosdto';
 
 @Component({
   selector: 'app-correos',
@@ -46,6 +47,7 @@ export class Correos implements ControlValueAccessor,Validator {
   ngOnDestroy():void{
     this.sub?.unsubscribe()
   }
+  @Output() postcorreo = new EventEmitter<CrearcorreoDTO>()
    private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
 
@@ -59,7 +61,7 @@ export class Correos implements ControlValueAccessor,Validator {
   get correos(){
     return this.form.get('correos') as FormArray
   }
-  
+
 
   newcorreo(){
 
@@ -70,11 +72,13 @@ export class Correos implements ControlValueAccessor,Validator {
 
   }
 
-  agregarcorreo(){
-    if (!this.form.valid) {
 
-      return
-    }
+  agregarcorreo(){
+
+    const correo = this.form.value as CrearcorreoDTO
+    this.postcorreo.emit(correo)
+
+
   }
 }
 

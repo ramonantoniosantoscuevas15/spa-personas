@@ -1,5 +1,5 @@
 <h2>Ingrese el Telefono</h2>
-<form [formGroup]="form">
+<form (submit)="agregartelefono()" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Tipo</mat-label>
     <input placeholder="Ej casa,trabajo,etc" matInput [formControl]="form.controls.tipo" formControlName="tipo">
@@ -37,6 +37,12 @@
         </button>
 
       </div>
+
+  </div>
+   <div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    Insertar Telefono</button>
 
   </div>
 
