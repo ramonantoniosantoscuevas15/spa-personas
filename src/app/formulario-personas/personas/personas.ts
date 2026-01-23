@@ -1,5 +1,5 @@
-import {  ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Output } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Output } from '@angular/core';
+import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,38 +26,46 @@ export class Personas {
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
-  listacorreos:CrearcorreoDTO[]=[]
-  listatelefonos:CreartelefonoDTO[]=[]
-  listadirreciones:CreardirrecionesDTO[]=[]
+  listacorreos: CrearcorreoDTO[] = []
+  listatelefonos: CreartelefonoDTO[] = []
+  listadirreciones: CreardirrecionesDTO[] = []
 
   form = this.fb.group({
 
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
+    emails:{
+      correos:''
+    }
+
 
   })
 
 
-  guardarPersonas(){
+
+
+  guardarPersonas() {
     const persona = this.form.value as CrearpersonaDTO
+
     this.postPersona.emit(persona)
 
 
 
   }
-   agregarcorreo(correo:CrearcorreoDTO){
+  agregarcorreo(correo: CrearcorreoDTO) {
+
 
     this.listacorreos.push(correo)
     console.log(this.listacorreos)
   }
-  agregartelefono(telefono:CreartelefonoDTO){
+  agregartelefono(telefono: CreartelefonoDTO) {
     this.listatelefonos.push(telefono)
     console.log(this.listatelefonos)
 
   }
 
-  agregardirrecion(dirreciones:CreardirrecionesDTO){
+  agregardirrecion(dirreciones: CreardirrecionesDTO) {
     this.listadirreciones.push(dirreciones)
     console.log(this.listadirreciones)
 

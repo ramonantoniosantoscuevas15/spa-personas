@@ -1,40 +1,40 @@
-<h2>Ingrese Los Datos de la  Perosna</h2>
+<h2>Ingrese Los Datos de la Perosna</h2>
 <form (submit)="guardarPersonas()" [formGroup]="form">
- <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
-    <input matInput [formControl] = "form.controls.nombre"/>
+    <input matInput [formControl]="form.controls.nombre" />
     @if (formUtilidades.isvalidField(form,'nombre')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"nombre")}}</mat-error>
+    <mat-error>{{formUtilidades.getFieldError(form,"nombre")}}</mat-error>
     }
 
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Apellido:</mat-label>
-    <input matInput [formControl] = "form.controls.apellido" />
+    <input matInput [formControl]="form.controls.apellido" />
     @if (formUtilidades.isvalidField(form,'apellido')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"apellido")}}</mat-error>
+    <mat-error>{{formUtilidades.getFieldError(form,"apellido")}}</mat-error>
     }
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Cedula:</mat-label>
-    <input matInput [formControl] = "form.controls.cedula"/>
+    <input matInput [formControl]="form.controls.cedula" />
     @if (formUtilidades.isvalidField(form,'cedula')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
+    <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
-      <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
-      <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
-      <app-telefonos (posttelefono)="agregartelefono($event)"></app-telefonos>
 
-      <div class="contenedor-botones">
-    <button mat-flat-button
-    [disabled]="form.invalid">
-    Continuar</button>
+  <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
+  <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
+  <app-telefonos (posttelefono)="agregartelefono($event)"></app-telefonos>
+
+
+  <div class="contenedor-botones">
+    <button mat-flat-button [disabled]="form.invalid">
+      Continuar</button>
     <a mat-stroked-button routerLink="/">Cancelar</a>
   </div>
 
 
 </form>
-

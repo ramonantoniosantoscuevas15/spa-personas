@@ -9,11 +9,11 @@ export interface dirrecionesDTO{
 }
 
 export interface CreardirrecionesDTO{
-  tipo:string,
+  tipo:[],
   ubicacion:[],
-  ciudad:string,
-  provincia:string,
-  codigopostal:string,
-  pais:string
+  ciudad:[],
+  provincia:[],
+  codigopostal:[],
+  pais:[]
 
 }
