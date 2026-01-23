@@ -1,48 +1,41 @@
 <h2>Ingrese el Telefono</h2>
 <form (submit)="agregartelefono()" [formGroup]="form">
-  <mat-form-field appearance="outline">
-    <mat-label>Tipo</mat-label>
-    <input placeholder="Ej casa,trabajo,etc" matInput [formControl]="form.controls.tipo" formControlName="tipo">
-    @if (formUtilidades.isvalidField(form,'tipo')) {
-    <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+  <div formArrayName="numeros">
+    @for (numero of numeros.controls; track $index; let i = $index) {
+    <div [formGroupName]="i">
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo</mat-label>
+        <input placeholder="Ej casa,trabajo,etc" matInput formControlName="tipo">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Codigo Pais</mat-label>
+        <input placeholder="Ex. +809" matInput formControlName="codigopais">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input placeholder="numero"  matInput formControlName="numero">
+
+      </mat-form-field>
+
+    </div>
+    <button (click)="onDeletenumero(i)" class="btn btn-outline-danger" type="button">Eliminar</button>
     }
-
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Codigo Pais</mat-label>
-    <input placeholder="Ex. +809" matInput [formControl]="form.controls.codigopais" formControlName="codigopais">
-    @if (formUtilidades.isvalidField(form,'codigopais')) {
-    <mat-error>{{formUtilidades.getFieldError(form,"codigopais")}}</mat-error>
-    }
-  </mat-form-field>
-
-  <div formArrayName="numero">
-    @for (numeros of numero.controls; track $index; let i = $index) {
-      <div class="input-group">
-        <mat-form-field appearance="outline">
-          <input placeholder="numero"  matInput [formControlName]="i">
-          @if (formUtilidades.isValidFieldInArray(numero,i)) {
-            <mat-error>{{formUtilidades.getFieldErrorInArray(numero,i)}}</mat-error>
-          }
-        </mat-form-field>
-        <button (click)="onDeletenumero(i)"  class="btn btn-outline-danger" type="button">eliminar</button>
-
-      </div>
-    }
-    <div>
-
-        <button class="btn btn-outline-primary" type="button" (click)="newnumero()">
-          Agregar otro Numero
-        </button>
-
-      </div>
 
   </div>
-   <div class="contenedor-botones">
-    <button mat-flat-button
-    [disabled]="form.invalid">
-    Insertar Telefono</button>
+  <div>
+
+      <button class="btn btn-outline-primary" type="button" (click)="newnumero()">
+        Agregar Numero
+      </button>
+
+    </div>
+
+  <div class="contenedor-botones">
+    <button mat-flat-button [disabled]="form.invalid">
+      Insertar Telefono</button>
 
   </div>
 

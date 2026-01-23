@@ -26,18 +26,17 @@ export class Personas {
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
-  listacorreos: CrearcorreoDTO[] = []
-  listatelefonos: CreartelefonoDTO[] = []
-  listadirreciones: CreardirrecionesDTO[] = []
+  listadocorreo: CrearcorreoDTO[]=[]
+  listadotelefonos: CreartelefonoDTO[]=[]
+  listadirreciones: CreardirrecionesDTO[]=[]
+
 
   form = this.fb.group({
 
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: ['', { validators: [Validators.required] }],
-    emails:{
-      correos:''
-    }
+
 
 
   })
@@ -45,30 +44,43 @@ export class Personas {
 
 
 
+
+
   guardarPersonas() {
+
     const persona = this.form.value as CrearpersonaDTO
+   
+    // correo =this.listadocorreo.map(val=> val.correos)
+
+    // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
+
+
+
+
+
 
     this.postPersona.emit(persona)
 
 
 
   }
-  agregarcorreo(correo: CrearcorreoDTO) {
+   agregarcorreo(correos: CrearcorreoDTO) {
+    this.listadocorreo.push(correos)
+    console.log(this.listadocorreo)
 
 
-    this.listacorreos.push(correo)
-    console.log(this.listacorreos)
-  }
-  agregartelefono(telefono: CreartelefonoDTO) {
-    this.listatelefonos.push(telefono)
-    console.log(this.listatelefonos)
 
-  }
+   }
+   agregartelefono(telefono: CreartelefonoDTO) {
+     this.listadotelefonos.push(telefono)
+   console.log(this.listadotelefonos)
+
+   }
 
   agregardirrecion(dirreciones: CreardirrecionesDTO) {
     this.listadirreciones.push(dirreciones)
     console.log(this.listadirreciones)
 
-  }
+   }
 
 }

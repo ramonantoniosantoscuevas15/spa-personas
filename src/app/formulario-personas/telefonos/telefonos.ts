@@ -17,22 +17,27 @@ export class Telefonos {
   private fb = inject(FormBuilder)
   @Output() posttelefono = new EventEmitter<CreartelefonoDTO>()
   form = this.fb.group({
-    tipo:['',[Validators.required, Validators.minLength(3)]],
-    codigopais:['',[Validators.required, Validators.minLength(3)]],
-    numero: this.fb.array([[0,[Validators.required,Validators.min(1)]]]),
+   numeros:this.fb.array([])
 
   })
 
-  get numero(){
-    return this.form.get('numero') as FormArray
+  get numeros(){
+    return this.form.get('numeros') as FormArray
+
   }
 
   newnumero(){
-    this.numero.push(this.fb.control(0,[Validators.required,Validators.min(1)]))
+    this.numeros.push(this.fb.group({
+    tipo:['',[Validators.required, Validators.minLength(3)]],
+    codigopais:['',[Validators.required, Validators.minLength(3)]],
+    numero: [0,[Validators.required,Validators.min(1)]],
+    }))
+
   }
 
   onDeletenumero(index:number){
-    this.numero.removeAt(index)
+    this.numeros.removeAt(index)
+
 
   }
 
