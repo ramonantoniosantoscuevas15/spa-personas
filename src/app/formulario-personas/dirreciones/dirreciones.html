@@ -7,61 +7,59 @@
   <div formArrayName="dirreciones">
     @for (dirrecion of dirreciones.controls; track $index; let i =$index ) {
 
-    <div class="input-group" [formGroupName]="i">
+    <div  [formGroupName]="i">
 
       <mat-form-field appearance="outline">
         <mat-label>Tipo:</mat-label>
         <input matInput placeholder="ej trabajo, casa, etc." formControlName="tipo" />
-        @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
+
+
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Ubicacion:</mat-label>
         <input matInput formControlName="ubicacion" />
-        @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
+
 
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Ciudad:</mat-label>
         <input matInput formControlName="ciudad" />
-        @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
+
 
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Provincia:</mat-label>
         <input matInput formControlName="provincia" />
-        @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
+
 
       </mat-form-field>
       <mat-form-field appearance="outline">
-    <mat-label>Codigo Postal:</mat-label>
-    <input matInput formControlName="codigopostal" />
-    @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
+        <mat-label>Codigo Postal:</mat-label>
+        <input matInput formControlName="codigopostal" />
 
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Pais:</mat-label>
-    <input matInput formControlName="pais" />
-    @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-    <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-    }
 
-  </mat-form-field>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pais:</mat-label>
+        <input matInput formControlName="pais" />
+
+
+      </mat-form-field>
+
+
 
 
 
     </div>
-    <button (click)="onDeletedirrecion(i)"  class="btn btn-outline-danger" type="button">eliminar</button>
+    @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
+      <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
+      }
+    <button (click)="onDeletedirrecion(i)" class="btn btn-outline-danger" type="button">eliminar</button>
+
+
     }
+
+
     <div>
 
       <button class="btn btn-outline-primary" type="button" (click)="newdirrecion()">

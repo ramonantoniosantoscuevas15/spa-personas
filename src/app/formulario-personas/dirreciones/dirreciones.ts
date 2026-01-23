@@ -17,7 +17,10 @@ export class Dirreciones {
   private fb = inject(FormBuilder)
   @Output() postdirrecion = new EventEmitter<CreardirrecionesDTO>()
   form = this.fb.group({
-    dirreciones: this.fb.array([])
+    dirreciones: this.fb.array([],
+      
+
+    )
 
 
   })
