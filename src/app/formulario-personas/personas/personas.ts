@@ -54,6 +54,10 @@ export class Personas {
 
     // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
 
+    persona.listacorreos = this.listadocorreo
+    persona.listadirreciones =this.listadirreciones
+    persona.listatelefonos = this.listadotelefonos
+
 
 
 

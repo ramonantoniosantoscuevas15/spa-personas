@@ -8,36 +8,60 @@ import { Categorias } from './categorias/categorias';
 
 export const routes: Routes = [
   {
-    path:'',
-    component:FormularioPersonas
-  },
-  {
-    path:'personas',
-    component:Personas,
-    children:[
+    path: '',
+    component: FormularioPersonas,
+    children: [
       {
-        path:'correos',
-        component:Correos
+        path: 'personas',
+        component: Personas
       },
       {
-        path:'telefonos',
-        component:Telefonos
+        path: 'correos',
+        component: Correos
       },
       {
-        path:'dirreciones',
-        component:Dirreciones
+        path: 'telefonos',
+        component: Telefonos
       },
+      {
+        path: 'dirreciones',
+        component: Dirreciones
 
-
+      }
     ]
+
   },
+  // {
+  //   path:'',
+  //   component:FormularioPersonas
+  // },
+  // {
+  //   path:'personas',
+  //   component:Personas,
+  //   children:[
+  //     {
+  //       path:'correos',
+  //       component:Correos
+  //     },
+  //     {
+  //       path:'telefonos',
+  //       component:Telefonos
+  //     },
+  //     {
+  //       path:'dirreciones',
+  //       component:Dirreciones
+  //     },
+
+
+  //   ]
+  // },
 
   {
-    path:'categorias',
-    component:Categorias
+    path: 'categorias',
+    component: Categorias
   },
   {
-    path:'**',
-    redirectTo:''
+    path: '**',
+    redirectTo: ''
   }
 ];
