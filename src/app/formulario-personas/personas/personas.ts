@@ -49,7 +49,7 @@ export class Personas {
   guardarPersonas() {
 
     const persona = this.form.value as CrearpersonaDTO
-   
+
     // correo =this.listadocorreo.map(val=> val.correos)
 
     // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))

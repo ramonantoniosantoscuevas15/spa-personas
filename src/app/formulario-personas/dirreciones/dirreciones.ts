@@ -17,41 +17,37 @@ export class Dirreciones {
   private fb = inject(FormBuilder)
   @Output() postdirrecion = new EventEmitter<CreardirrecionesDTO>()
   form = this.fb.group({
-    dirreciones: this.fb.array([],
-      
-
-    )
+    tipo:['', [Validators.required, Validators.minLength(3)]],
+    ubicacion:this.fb.array([['', [Validators.required, Validators.minLength(3)]]]),
+    ciudad: ['', [Validators.required, Validators.minLength(3)]],
+    provincia: ['', [Validators.required, Validators.minLength(3)]],
+    codigopostal: ['', [Validators.required]],
+    pais: ['', [Validators.required, Validators.minLength(3)]],
+    
 
 
   })
 
-  get dirreciones() {
-    return this.form.get('dirreciones') as FormArray
-  }
-  newdirrecion() {
-    this.dirreciones.push(this.fb.group({
-      tipo: ['', [Validators.required, Validators.minLength(3)]],
-      ubicacion: ['', [Validators.required, Validators.minLength(3)]],
-      ciudad: ['', [Validators.required, Validators.minLength(3)]],
-      provincia: ['', [Validators.required, Validators.minLength(3)]],
-      codigopostal: ['', [Validators.required]],
-      pais: ['', [Validators.required, Validators.minLength(3)]],
-    }))
+  get ubicacion(){
+    return this.form.get('ubicacion') as FormArray
   }
 
-   onDeletedirrecion(index:number){
-    this.dirreciones.removeAt(index)
+
+  newubicacion(){
+    this.ubicacion.push(this.fb.control('',[Validators.required, Validators.minLength(3)]))
+  }
+  onDeleteubicacion(index:number){
+    this.ubicacion.removeAt(index)
+  }
 
 
-   }
 
-  // newubicacion(){
-  //   this.ubicacion.push(this.fb.control('', [Validators.required, Validators.minLength(3)]))
-  // }
+
+
 
   agregardirrecion() {
-    const dirrecion = this.form.value as CreardirrecionesDTO
-    this.postdirrecion.emit(dirrecion)
+     const dirrecion = this.form.value as CreardirrecionesDTO
+     this.postdirrecion.emit(dirrecion)
   }
 
 }

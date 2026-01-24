@@ -1,79 +1,62 @@
 <form (submit)="agregardirrecion()" [formGroup]="form">
   <h2>Ingrese la Dirrecion</h2>
+  <mat-form-field appearance="outline">
+  <mat-label>Tipo:</mat-label>
+    <input matInput placeholder="ej trabajo, casa, etc."
+    [formControl]="form.controls.tipo"
+    formControlName="tipo"/>
+     @if (formUtilidades.isvalidField(form,'tipo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
+  </mat-form-field>
 
-
-
-
-  <div formArrayName="dirreciones">
-    @for (dirrecion of dirreciones.controls; track $index; let i =$index ) {
-
-    <div  [formGroupName]="i">
-
-      <mat-form-field appearance="outline">
-        <mat-label>Tipo:</mat-label>
-        <input matInput placeholder="ej trabajo, casa, etc." formControlName="tipo" />
-
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Ubicacion:</mat-label>
-        <input matInput formControlName="ubicacion" />
-
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Ciudad:</mat-label>
-        <input matInput formControlName="ciudad" />
-
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Provincia:</mat-label>
-        <input matInput formControlName="provincia" />
-
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Codigo Postal:</mat-label>
-        <input matInput formControlName="codigopostal" />
-
-
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Pais:</mat-label>
-        <input matInput formControlName="pais" />
-
-
-      </mat-form-field>
-
-
-
-
-
-    </div>
-    @if (formUtilidades.getFieldErrorInArray(dirreciones,i)) {
-      <mat-error>{{formUtilidades.getFieldErrorInArray(dirreciones,i)}}</mat-error>
-      }
-    <button (click)="onDeletedirrecion(i)" class="btn btn-outline-danger" type="button">eliminar</button>
-
-
+  <div formArrayName="ubicacion">
+    @for (ubicaciones of ubicacion.controls; track $index; let i = $index) {
+      <div class="input-group">
+        <mat-form-field appearance="outline">
+          <input placeholder="Ubicacion" matInput [formControlName]="i">
+          @if (formUtilidades.isValidFieldInArray(ubicacion,i)) {
+        <mat-error>{{formUtilidades.getFieldErrorInArray(ubicacion,i)}}</mat-error>
+        }
+        </mat-form-field>
+        <button (click)="onDeleteubicacion(i)" class="btn btn-outline-danger" type="button">Eliminar</button>
+      </div>
+    }
+  </div>
+  <div>
+    <button class="btn btn-outline-primary" type="button" (click)="newubicacion()">
+          Agregar atra Ubicacion
+        </button>
+  </div>
+  <mat-form-field appearance="outline">
+    <mat-label>Ciudad:</mat-label>
+    <input matInput [formControl]="form.controls.ciudad" formControlName="ciudad"   />
+     @if (formUtilidades.isvalidField(form,'ciudad')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"ciudad")}}</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Provincia:</mat-label>
+    <input matInput [formControl]="form.controls.provincia" formControlName="provincia"   />
+       @if (formUtilidades.isvalidField(form,'provincia')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"provincia")}}</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo Postal:</mat-label>
+    <input matInput [formControl]="form.controls.codigopostal" formControlName="codigopostal"  />
+       @if (formUtilidades.isvalidField(form,'codigopostal')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"codigopostal")}}</mat-error>
+    }
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Pais:</mat-label>
+    <input matInput [formControl]="form.controls.pais" formControlName="pais"   />
+       @if (formUtilidades.isvalidField(form,'pais')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"pais")}}</mat-error>
     }
 
-
-    <div>
-
-      <button class="btn btn-outline-primary" type="button" (click)="newdirrecion()">
-        Agregar Dirrecion
-      </button>
-
-    </div>
-
-  </div>
-
-
-
-
-
+  </mat-form-field>
 
   <div class="contenedor-botones">
     <button mat-flat-button [disabled]="form.invalid">
