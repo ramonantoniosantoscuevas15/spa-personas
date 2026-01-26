@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Input, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,13 +11,15 @@ import { CrearpersonaDTO } from './personasdto';
 import { CrearcorreoDTO } from '../correos/correosdto';
 import { CreartelefonoDTO } from '../telefonos/telefonosdto';
 import { CreardirrecionesDTO } from '../dirreciones/dirrecionesdto';
+import { SelectorMultiple } from "../../componentes/selector-multiple/selector-multiple";
+import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
 
 
 
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos, SelectorMultiple],
   templateUrl: './personas.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 
@@ -26,9 +28,14 @@ export class Personas {
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
-  listadocorreo: CrearcorreoDTO[]=[]
-  listadotelefonos: CreartelefonoDTO[]=[]
-  listadirreciones: CreardirrecionesDTO[]=[]
+  listadocorreo: CrearcorreoDTO[] = []
+  listadotelefonos: CreartelefonoDTO[] = []
+  listadirreciones: CreardirrecionesDTO[] = []
+  @Input({ required: true })
+  categoriasNoSeleccionadas!: SelectorMultipleDTO[]
+
+  @Input({ required: true })
+  categoriasSeleccionadas!: SelectorMultipleDTO[]
 
 
   form = this.fb.group({
@@ -55,8 +62,12 @@ export class Personas {
     // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
 
     persona.listacorreos = this.listadocorreo
-    persona.listadirreciones =this.listadirreciones
+    persona.listadirreciones = this.listadirreciones
     persona.listatelefonos = this.listadotelefonos
+    const categoriasIds = this.categoriasSeleccionadas.map(val => val.id)
+
+
+    persona.categoriasIds = categoriasIds
 
 
 
@@ -68,23 +79,23 @@ export class Personas {
 
 
   }
-   agregarcorreo(correos: CrearcorreoDTO) {
+  agregarcorreo(correos: CrearcorreoDTO) {
     this.listadocorreo.push(correos)
     console.log(this.listadocorreo)
 
 
 
-   }
-   agregartelefono(telefono: CreartelefonoDTO) {
-     this.listadotelefonos.push(telefono)
-   console.log(this.listadotelefonos)
+  }
+  agregartelefono(telefono: CreartelefonoDTO) {
+    this.listadotelefonos.push(telefono)
+    console.log(this.listadotelefonos)
 
-   }
+  }
 
   agregardirrecion(dirreciones: CreardirrecionesDTO) {
     this.listadirreciones.push(dirreciones)
     console.log(this.listadirreciones)
 
-   }
+  }
 
 }

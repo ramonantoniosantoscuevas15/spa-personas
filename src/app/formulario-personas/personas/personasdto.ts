@@ -15,6 +15,7 @@ export interface CrearpersonaDTO{
   cedula:string,
   listacorreos: CrearcorreoDTO[],
   listatelefonos:CreartelefonoDTO[],
-  listadirreciones:CreardirrecionesDTO[]
+  listadirreciones:CreardirrecionesDTO[],
+  categoriasIds?: number[]
 
 }

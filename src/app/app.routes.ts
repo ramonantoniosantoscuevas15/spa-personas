@@ -5,6 +5,7 @@ import { Correos } from './formulario-personas/correos/correos';
 import { Dirreciones } from './formulario-personas/dirreciones/dirreciones';
 import { Telefonos } from './formulario-personas/telefonos/telefonos';
 import { Categorias } from './categorias/categorias';
+import { FormularioCategorias } from './categorias/formulario-categorias/formulario-categorias';
 
 export const routes: Routes = [
   {
@@ -59,6 +60,10 @@ export const routes: Routes = [
   {
     path: 'categorias',
     component: Categorias
+  },
+  {
+    path:'categorias/formulario',
+    component:FormularioCategorias
   },
   {
     path: '**',

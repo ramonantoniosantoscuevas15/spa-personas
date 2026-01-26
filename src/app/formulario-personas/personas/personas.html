@@ -24,6 +24,8 @@
     <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
+  <h4>Seleccione Las Categorias</h4>
+  <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
 
 
    <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>

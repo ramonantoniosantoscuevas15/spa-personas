@@ -1,1 +1,17 @@
-<p>categorias works!</p>,
+<form (submit)="guardarCategoria()"[formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>tipo:</mat-label>
+    <input matInput [formControl] = "form.controls.tipo"/>
+    @if (formUtilidades.isvalidField(form,'tipo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <div class="contenedor-botones">
+    <button mat-flat-button 
+    [disabled]="form.invalid">
+    guardar Categoria</button>
+
+
+  </div>
+</form>

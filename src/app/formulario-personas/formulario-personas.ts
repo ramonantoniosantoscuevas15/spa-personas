@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-multiplemodelo';
 
 
 
@@ -18,6 +19,13 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class FormularioPersonas {
   listacorreos:CrearcorreoDTO[]=[]
+
+  categoriasSeleccionadas : SelectorMultipleDTO[] = []
+  categoriasNoSeleccionadas : SelectorMultipleDTO[] = [
+    {id: 1, tipo: 'Empleado Mision'},
+    {id: 2, tipo: 'Visitante'},
+    {id: 3, tipo: 'Empleado'},
+  ]
 
   guardarPersonas(persona: CrearpersonaDTO){
     console.log("Se creo la Persona", persona)
