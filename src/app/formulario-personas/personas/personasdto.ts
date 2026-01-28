@@ -6,13 +6,17 @@ export interface personaDTO{
   id:Number,
   nombre:string,
   apellido:string,
-  cedula:string
+  cedula:number,
+  fechanacimiento : Date,
+  notas: string
 }
 
 export interface CrearpersonaDTO{
   nombre:string,
   apellido:string,
-  cedula:string,
+  cedula:number,
+  fechanacimiento : Date,
+  notas: string,
   listacorreos: CrearcorreoDTO[],
   listatelefonos:CreartelefonoDTO[],
   listadirreciones:CreardirrecionesDTO[],

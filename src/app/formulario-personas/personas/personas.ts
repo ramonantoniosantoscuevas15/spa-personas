@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Input, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,13 +13,15 @@ import { CreartelefonoDTO } from '../telefonos/telefonosdto';
 import { CreardirrecionesDTO } from '../dirreciones/dirrecionesdto';
 import { SelectorMultiple } from "../../componentes/selector-multiple/selector-multiple";
 import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import moment from 'moment';
 
 
 
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos, SelectorMultiple],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos, SelectorMultiple,MatDatepickerModule],
   templateUrl: './personas.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 
@@ -42,7 +44,9 @@ export class Personas {
 
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
-    cedula: ['', { validators: [Validators.required] }],
+    cedula: [0,[Validators.required,Validators.min(1)]],
+    fechanacimiento: new FormControl<Date | null>(null),
+    
 
 
 
@@ -60,6 +64,7 @@ export class Personas {
     // correo =this.listadocorreo.map(val=> val.correos)
 
     // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
+    persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
     persona.listacorreos = this.listadocorreo
     persona.listadirreciones = this.listadirreciones

@@ -19,11 +19,19 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Cedula:</mat-label>
-    <input matInput [formControl]="form.controls.cedula" />
+    <input matInput type="number" [formControl]="form.controls.cedula" />
     @if (formUtilidades.isvalidField(form,'cedula')) {
     <mat-error>{{formUtilidades.getFieldError(form,"cedula")}}</mat-error>
     }
   </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha Nacimiento</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="form.controls.fechanacimiento">
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+  </mat-form-field>
+  
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
 
