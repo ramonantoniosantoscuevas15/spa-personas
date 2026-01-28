@@ -8,7 +8,6 @@ export interface personaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  notas: string
 }
 
 export interface CrearpersonaDTO{
@@ -16,7 +15,6 @@ export interface CrearpersonaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  notas: string,
   listacorreos: CrearcorreoDTO[],
   listatelefonos:CreartelefonoDTO[],
   listadirreciones:CreardirrecionesDTO[],
