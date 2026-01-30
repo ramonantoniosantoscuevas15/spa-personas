@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { CrearCategoriaDTO } from './categoriasdto';
+import { CategoriaDTO, CrearCategoriaDTO } from './categoriasdto';
 import { FormUtilidades } from '../utils/form-utilidades';
 
 @Component({
@@ -11,8 +11,14 @@ import { FormUtilidades } from '../utils/form-utilidades';
   templateUrl: './categorias.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Categorias {
+export class Categorias implements OnInit {
+  ngOnInit(): void {
+    if(this.modelo !== undefined){
+      this.form.patchValue(this.modelo)
+    }
+  }
   formUtilidades = FormUtilidades
+  @Input() modelo?: CategoriaDTO
   @Output()
   postFormulario = new EventEmitter<CrearCategoriaDTO>()
   private fb = inject(FormBuilder)

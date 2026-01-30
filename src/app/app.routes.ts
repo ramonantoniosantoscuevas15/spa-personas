@@ -6,6 +6,7 @@ import { Dirreciones } from './formulario-personas/dirreciones/dirreciones';
 import { Telefonos } from './formulario-personas/telefonos/telefonos';
 import { Categorias } from './categorias/categorias';
 import { FormularioCategorias } from './categorias/formulario-categorias/formulario-categorias';
+import { EditarCategorias } from './categorias/editar-categorias/editar-categorias';
 
 export const routes: Routes = [
   {
@@ -64,6 +65,10 @@ export const routes: Routes = [
   {
     path:'categorias/formulario',
     component:FormularioCategorias
+  },
+  {
+    path:'categorias/editar/:id',
+    component: EditarCategorias
   },
   {
     path: '**',
