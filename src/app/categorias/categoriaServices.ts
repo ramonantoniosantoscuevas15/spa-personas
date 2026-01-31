@@ -1,15 +1,32 @@
-import { Injectable } from '@angular/core';
-import { CategoriaDTO } from './categoriasdto';
+import { inject, Injectable } from '@angular/core';
+import { CategoriaDTO, CrearCategoriaDTO } from './categoriasdto';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment.development';
+import { PaginacionDTO } from '../componentes/models/Paginaciondto';
+import { contruirQueryParams } from '../componentes/funciones/queris/construitQueryParams';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaServices {
+  private http = inject(HttpClient)
+  private urlBase = environment.apiUrl
 
   constructor() { }
+  //borra esta funcion
+  public obtenerTodos(paginacion: PaginacionDTO): Observable<HttpResponse<CategoriaDTO[]>>{
+    let queryparams = contruirQueryParams(paginacion)
+    return this.http.get<CategoriaDTO[]>(this.urlBase + '/Obtener Catalogo',{params:queryparams, observe:'response'})
+  }
 
-  public obtenerTodos():CategoriaDTO[]{
-    return[{id:1,tipo:'tipo'}]
+  // public obtenerTodos(paginacion:PaginacionDTO):Observable<HttpResponse <CategoriaDTO[]>>{
+  //   let queryparams = contruirQueryParams(paginacion)
+  //   return this.http.get<CategoriaDTO[]>(this.urlBase,{params: queryparams, observe:'response'})
+  // }
+
+  public Crear(categoria: CrearCategoriaDTO){
+    return this.http.post(this.urlBase,categoria)
   }
 
 }

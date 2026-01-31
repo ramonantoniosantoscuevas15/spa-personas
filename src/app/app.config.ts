@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import{provideMomentDateAdapter} from '@angular/material-moment-adapter';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,7 +21,8 @@ export const appConfig: ApplicationConfig = {
         monthYearA11yLabel:'MMMM-YYYY'
       }
 
-    })
+    }),
+    provideHttpClient(withFetch())
   ]
 
 };
