@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {  Component, inject } from '@angular/core';
 import { CategoriaServices } from '../categoriaServices';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
@@ -11,34 +11,43 @@ import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-indice-categoria',
-  imports: [RouterLink, MatButtonModule, ListadoGenerico,MatTableModule, MatPaginatorModule,],
+  imports: [RouterLink, MatButtonModule, MatTableModule, MatPaginatorModule, ListadoGenerico],
   templateUrl: './indice-categoria.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class IndiceCategoria {
-  private categoriaservices = inject(CategoriaServices)
-  categoria!: CategoriaDTO[]
+  categoriasServices = inject(CategoriaServices)
+  categorias!: CategoriaDTO[]
   columnasAMostrar = ['id','tipo','acciones']
-  paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
+   paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
    cantidadTotalRegistros!:number
+
 
   constructor(){
     this.Cargarregistros()
 
-
   }
   Cargarregistros(){
-    this.categoriaservices.obtenerTodos(this.paginacion).subscribe((respuesta:HttpResponse<CategoriaDTO[]>)=>
+    this.categoriasServices.obtenerTodos(this.paginacion).subscribe((respuesta:HttpResponse<CategoriaDTO[]>)=>
     {
-      this.categoria = respuesta.body as CategoriaDTO[]
+      this.categorias = respuesta.body as CategoriaDTO[]
       const cabecera = respuesta.headers.get("cantidadTotalRegistros") as string
       this.cantidadTotalRegistros = parseInt(cabecera,10)
 
     }
     )
   }
+
   actualizarPaginacion(datos:PageEvent){
     this.paginacion = {pagina: datos.pageIndex+1,recordsPorPagina: datos.pageSize}
     this.Cargarregistros()
   }
+
+  // borrar(id:number){
+  //   this.categoriasServices.borrar(id).subscribe(()=>{
+  //     this.paginacion = {pagina:1,recordsPorPagina:5};
+  //     this.Cargarregistros();
+  //   }
+  //   )
+  // }
  }
