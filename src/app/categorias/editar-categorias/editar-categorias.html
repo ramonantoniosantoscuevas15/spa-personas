@@ -1,1 +1,8 @@
-<app-categorias [modelo]="categoria" (postFormulario)="guardarCategoria($event)"></app-categorias>
+@if(categoria){
+  <app-categorias [modelo]="categoria" (postFormulario)="guardarCategoria($event)"></app-categorias>
+
+}@else{
+  <app-cargando></app-cargando>
+
+}
+

@@ -16,7 +16,7 @@ import { HttpResponse } from '@angular/common/http';
 
 })
 export class IndiceCategoria {
-  categoriasServices = inject(CategoriaServices)
+  private categoriasServices = inject(CategoriaServices)
   categorias!: CategoriaDTO[]
   columnasAMostrar = ['id','tipo','acciones']
    paginacion:PaginacionDTO ={pagina:1,recordsPorPagina:5}
