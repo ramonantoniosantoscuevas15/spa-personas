@@ -14,24 +14,27 @@ export class CategoriaServices {
   private http = inject(HttpClient)
   private urlBase = environment.apiUrl + '/categorias'
 
-
-  constructor() { }
-  public obtenerporid(id: number): Observable<CategoriaDTO> {
-    return this.http.get<CategoriaDTO>(`${this.urlBase}/${id}`)
-  }
-
-  public obtenerTodos(paginacion: PaginacionDTO): Observable<HttpResponse<CategoriaDTO[]>> {
-    let queryparams = contruirQueryParams(paginacion)
-    return this.http.get<CategoriaDTO[]>(this.urlBase, { params: queryparams, observe: 'response' })
-  }
-
-  public actualizar(id:number,categoria:CrearCategoriaDTO){
-    return this.http.put(`${this.urlBase}/${id}`,categoria)
-  }
+  // private urlBase = environment.apiUrl + '/categorias'
 
 
-  public Crear(categoria: CrearCategoriaDTO) {
-    return this.http.post(this.urlBase, categoria)
-  }
+   constructor() { }
+
+
+ public obtenerTodos(paginacion: PaginacionDTO): Observable<HttpResponse<CategoriaDTO[]>> {
+     let queryparams = contruirQueryParams(paginacion)
+     return this.http.get<CategoriaDTO[]>(this.urlBase, { params: queryparams, observe: 'response' })
+   }
+   public obtenerporid(id: number): Observable<CategoriaDTO> {
+     return this.http.get<CategoriaDTO>(`${this.urlBase}/${id}`)
+   }
+
+   public actualizar(id: number,categoria: CrearCategoriaDTO){
+     return this.http.put(`${this.urlBase}/${id}`,categoria)
+   }
+
+
+   public Crear(categoria: CrearCategoriaDTO) {
+     return this.http.post(this.urlBase, categoria)
+   }
 
 }

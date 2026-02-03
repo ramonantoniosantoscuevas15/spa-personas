@@ -16,6 +16,8 @@
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let elemento">
           <a routerLink="/categorias/editar/{{elemento.id}}" button mat-flat-button class="primary">Editar</a>
+          <button mat-flat-button class="warn">Borrar</button>
+
 
         </td>
       </ng-container>
