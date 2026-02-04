@@ -8,10 +8,11 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { PaginacionDTO } from '../../componentes/models/Paginaciondto';
 import { HttpResponse } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-indice-categoria',
-  imports: [RouterLink, MatButtonModule, MatTableModule, MatPaginatorModule, ListadoGenerico],
+  imports: [RouterLink, MatButtonModule, MatTableModule, MatPaginatorModule, ListadoGenerico,SweetAlert2Module],
   templateUrl: './indice-categoria.html',
 
 })
@@ -43,11 +44,11 @@ export class IndiceCategoria {
     this.Cargarregistros()
   }
 
-  // borrar(id:number){
-  //   this.categoriasServices.borrar(id).subscribe(()=>{
-  //     this.paginacion = {pagina:1,recordsPorPagina:5};
-  //     this.Cargarregistros();
-  //   }
-  //   )
-  // }
+  borrar(id:number){
+    this.categoriasServices.borrar(id).subscribe(()=>{
+      this.paginacion= {pagina:1,recordsPorPagina:5}
+      this.Cargarregistros()
+    })
+
+  }
  }

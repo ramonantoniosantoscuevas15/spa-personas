@@ -8,7 +8,7 @@ import { MostrarErrores } from "../../componentes/mostrar-errores/mostrar-errore
 
 @Component({
   selector: 'app-formulario-categorias',
-  imports: [Categorias, MostrarErrores],
+  imports: [Categorias, ],
   templateUrl: './formulario-categorias.html',
 
 })
@@ -17,15 +17,9 @@ export class FormularioCategorias {
   private router = inject(Router)
   errores:string[]=[]
   guardarCategoria(categoria: CrearCategoriaDTO){
-    this.categoriasservice.Crear(categoria).subscribe({
-      next:()=>{
-        this.router.navigate(['/indice-categoria'])
-      },
-      error:err=>{
-        const errores = extraererrores(err)
-        this.errores = errores
+    this.categoriasservice.Crear(categoria).subscribe(()=>{
+      this.router.navigate(['/indice-categoria'])
 
-      }
     })
 
 

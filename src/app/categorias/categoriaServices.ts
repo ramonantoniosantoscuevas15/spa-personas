@@ -36,5 +36,8 @@ export class CategoriaServices {
    public Crear(categoria: CrearCategoriaDTO) {
      return this.http.post(this.urlBase, categoria)
    }
+   public borrar(id: number){
+    return this.http.delete(`${this.urlBase}/${id}`)
+   }
 
 }
