@@ -52,6 +52,7 @@ export class Personas implements OnInit {
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: [0,[Validators.required,Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
+    correos:''
 
 
 
@@ -69,7 +70,7 @@ export class Personas implements OnInit {
 
     // correo =this.listadocorreo.map(val=> val.correos)
 
-    // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
+    // persona.Correos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
     persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
     persona.Correos = this.listadocorreo

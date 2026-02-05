@@ -2,8 +2,8 @@
 <form (submit)="agregartelefono()" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Tipo</mat-label>
-    <input placeholder="Ej: casa,trabajo,etc" matInput [formControl]="form.controls.tipo" formControlName="tipo">
-    @if (formUtilidades.isvalidField(form,'tipo')) {
+    <input placeholder="Ej: casa,trabajo,etc" matInput [formControl]="form.controls.tiponumero" formControlName="tiponumero">
+    @if (formUtilidades.isvalidField(form,'tiponumero')) {
     <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
     }
   </mat-form-field>

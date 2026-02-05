@@ -9,7 +9,7 @@ export interface dirrecionesDTO{
 }
 
 export interface CreardirrecionesDTO{
-  tipo: string,
+  tipodirrecion: string,
   ubicacion:[],
   ciudad:string,
   provincia:string,

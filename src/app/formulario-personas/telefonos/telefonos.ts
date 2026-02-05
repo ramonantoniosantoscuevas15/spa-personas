@@ -17,11 +17,11 @@ export class Telefonos {
   private fb = inject(FormBuilder)
   @Output() posttelefono = new EventEmitter<CreartelefonoDTO>()
   form = this.fb.group({
-    tipo:['',[Validators.required, Validators.minLength(3)]],
+    tiponumero:['',[Validators.required, Validators.minLength(3)]],
     codigopais:['',[Validators.required, Validators.minLength(3)]],
     numero: this.fb.array([[0,[Validators.required,Validators.min(1)]]]),
 
-   
+
 
   })
 

@@ -3,9 +3,9 @@
   <mat-form-field appearance="outline">
   <mat-label>Tipo:</mat-label>
     <input matInput placeholder="ej trabajo, casa, etc."
-    [formControl]="form.controls.tipo"
-    formControlName="tipo"/>
-     @if (formUtilidades.isvalidField(form,'tipo')) {
+    [formControl]="form.controls.tipodirrecion"
+    formControlName="tipodirrecion"/>
+     @if (formUtilidades.isvalidField(form,'tipodirrecion')) {
       <mat-error>{{formUtilidades.getFieldError(form,"tipo")}}</mat-error>
     }
   </mat-form-field>
