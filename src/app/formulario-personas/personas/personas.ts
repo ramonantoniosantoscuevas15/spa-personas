@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Inject, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Correos } from "../correos/correos";
 import { Dirreciones } from "../dirreciones/dirreciones";
 import { Telefonos } from "../telefonos/telefonos";
-import { CrearpersonaDTO } from './personasdto';
+import { CrearpersonaDTO, personaDTO } from './personasdto';
 import { CrearcorreoDTO } from '../correos/correosdto';
 import { CreartelefonoDTO } from '../telefonos/telefonosdto';
 import { CreardirrecionesDTO } from '../dirreciones/dirrecionesdto';
@@ -26,9 +26,15 @@ import moment from 'moment';
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class Personas {
+export class Personas implements OnInit {
+  ngOnInit(): void {
+    if(this.modelo !== undefined){
+      this.form.patchValue(this.modelo)
+    }
+  }
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
+  @Input() modelo? : personaDTO
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
   listadocorreo: CrearcorreoDTO[] = []
   listadotelefonos: CreartelefonoDTO[] = []
@@ -46,7 +52,7 @@ export class Personas {
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: [0,[Validators.required,Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
-    
+
 
 
 
@@ -66,9 +72,9 @@ export class Personas {
     // persona.listacorreos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
     persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
-    persona.listacorreos = this.listadocorreo
-    persona.listadirreciones = this.listadirreciones
-    persona.listatelefonos = this.listadotelefonos
+    persona.Correos = this.listadocorreo
+    persona.Dirreciones = this.listadirreciones
+    persona.Telefonos = this.listadotelefonos
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.id)
 
 

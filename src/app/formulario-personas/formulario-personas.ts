@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Personas } from "./personas/personas";
 import { CrearpersonaDTO } from './personas/personasdto';
 import { CrearcorreoDTO } from './correos/correosdto';
@@ -7,6 +7,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-multiplemodelo';
+import { PersonasServices } from './personas/personasServices';
+import { Router } from '@angular/router';
 
 
 
@@ -21,14 +23,26 @@ export class FormularioPersonas {
   listacorreos:CrearcorreoDTO[]=[]
 
   categoriasSeleccionadas : SelectorMultipleDTO[] = []
-  categoriasNoSeleccionadas : SelectorMultipleDTO[] = [
-    {id: 1, tipo: 'Empleado Mision'},
-    {id: 2, tipo: 'Visitante'},
-    {id: 3, tipo: 'Empleado'},
-  ]
+  categoriasNoSeleccionadas : SelectorMultipleDTO[] = []
+  personasServices = inject(PersonasServices)
+  router = inject(Router)
+
+  constructor(){
+    this.personasServices.crearGet().subscribe(modelo=>{
+      this.categoriasNoSeleccionadas = modelo.categorias.map(categoria=>{
+        return <SelectorMultipleDTO>{id:categoria.id,tipo:categoria.tipo}
+      })
+    })
+  }
 
   guardarPersonas(persona: CrearpersonaDTO){
-    console.log("Se creo la Persona", persona)
+    this.personasServices.crear(persona).subscribe({
+      next: persona=>{
+        console.log(persona)
+        this.router.navigate(['/'])
+
+      }
+    })
 
   }
 
