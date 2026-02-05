@@ -1,4 +1,4 @@
-<form (submit)="agregarcorreo()" [formGroup]="form">
+<!-- <form (submit)="agregarcorreo()" [formGroup]="form">
 <h2>Ingrese el Correo</h2>
   <div class="mb-3 row">
 
@@ -41,7 +41,7 @@
   </div>
 
 
-  <!-- <div formArrayName="correos">
+   <div formArrayName="correos">
 
   @for (correo of correos.controls; track $index; let i = $index) {
   <mat-form-field appearance="outline">
@@ -58,4 +58,16 @@
   <button class="boton-areglo" [disabled]="form.invalid"  mat-flat-button class="secundary"  type="button" (click)="newcorreo()">Agregar</button>
 
 </div> -->
+<!-- </form> -->
+<form (submit)="agregarcorreo()"   [formGroup]="form">
+    <fieldset >
+    <legend>Correo</legend>
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput  [formControl]="form.controls.correo" formControlName="correo" (blur)="onTouchedCb">
+    @if (formUtilidades.isvalidField(form,'correo')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
+    }
+  </mat-form-field>
+  </fieldset>
 </form>

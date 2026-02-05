@@ -21,20 +21,20 @@ import moment from 'moment';
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Correos, Dirreciones, Telefonos, SelectorMultiple,MatDatepickerModule],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, SelectorMultiple, MatDatepickerModule],
   templateUrl: './personas.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+
 
 })
 export class Personas implements OnInit {
   ngOnInit(): void {
-    if(this.modelo !== undefined){
+    if (this.modelo !== undefined) {
       this.form.patchValue(this.modelo)
     }
   }
   private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades
-  @Input() modelo? : personaDTO
+  @Input() modelo?: personaDTO
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
   listadocorreo: CrearcorreoDTO[] = []
   listadotelefonos: CreartelefonoDTO[] = []
@@ -50,9 +50,20 @@ export class Personas implements OnInit {
 
     nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
-    cedula: [0,[Validators.required,Validators.min(1)]],
+    cedula: [0, [Validators.required, Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
-    correos:''
+
+    correo: ['', [Validators.required, Validators.pattern(this.formUtilidades.emailPattern)]],
+
+    tipodirrecion: ['', [Validators.required, Validators.minLength(3)]],
+    ubicacion: ['', [Validators.required, Validators.minLength(3)]],
+    ciudad: ['', [Validators.required, Validators.minLength(3)]],
+    provincia: ['', [Validators.required, Validators.minLength(3)]],
+    codigopostal: ['', [Validators.required]],
+    pais: ['', [Validators.required, Validators.minLength(3)]],
+    tiponumero:['',[Validators.required, Validators.minLength(3)]],
+    codigopais:['',[Validators.required, Validators.minLength(3)]],
+    numero:[0,[Validators.required,Validators.min(1)]],
 
 
 
@@ -73,9 +84,9 @@ export class Personas implements OnInit {
     // persona.Correos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
     persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
-    persona.Correos = this.listadocorreo
-    persona.Dirreciones = this.listadirreciones
-    persona.Telefonos = this.listadotelefonos
+    // persona.Correos = this.listadocorreo as any
+    // persona.Dirreciones = this.listadirreciones
+    // persona.Telefonos = this.listadotelefonos
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.id)
 
 
@@ -92,7 +103,9 @@ export class Personas implements OnInit {
 
   }
   agregarcorreo(correos: CrearcorreoDTO) {
+
     this.listadocorreo.push(correos)
+
     console.log(this.listadocorreo)
 
 

@@ -1,7 +1,7 @@
 import { CategoriaDTO } from "../../categorias/categoriasdto"
-import { CrearcorreoDTO } from "../correos/correosdto"
-import { CreardirrecionesDTO } from "../dirreciones/dirrecionesdto"
-import { CreartelefonoDTO } from "../telefonos/telefonosdto"
+import { correoDTO, CrearcorreoDTO } from "../correos/correosdto"
+import { CreardirrecionesDTO, dirrecionesDTO } from "../dirreciones/dirrecionesdto"
+import { CreartelefonoDTO, telefonoDTO } from "../telefonos/telefonosdto"
 
 export interface personaDTO{
   id:Number,
@@ -9,9 +9,9 @@ export interface personaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  Correos: CrearcorreoDTO[],
-  Dirreciones:CreardirrecionesDTO[],
-  Telefonos:CreartelefonoDTO[],
+  correos: correoDTO[],
+  Dirreciones:dirrecionesDTO[],
+  Telefonos:telefonoDTO[],
 }
 
 export interface CrearpersonaDTO{
@@ -19,9 +19,9 @@ export interface CrearpersonaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  Correos: CrearcorreoDTO[],
-  Dirreciones:CreardirrecionesDTO[],
-  Telefonos:CreartelefonoDTO[],
+  correos: CrearcorreoDTO,
+  Dirreciones:CreardirrecionesDTO,
+  Telefonos:CreartelefonoDTO,
 
   categoriasIds?: number[]
 

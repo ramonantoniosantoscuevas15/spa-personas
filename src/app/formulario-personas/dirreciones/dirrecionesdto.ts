@@ -5,12 +5,13 @@ export interface dirrecionesDTO{
   ciudad:string,
   provincia:string,
   codigopostal:string,
-  pais:string
+  pais:string,
+  idpersona:number
 }
 
 export interface CreardirrecionesDTO{
   tipodirrecion: string,
-  ubicacion:[],
+  ubicacion:string,
   ciudad:string,
   provincia:string,
   codigopostal:string,

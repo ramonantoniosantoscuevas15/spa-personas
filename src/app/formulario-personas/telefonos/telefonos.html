@@ -1,4 +1,4 @@
-<h2>Ingrese el Telefono</h2>
+<!-- <h2>Ingrese el Telefono</h2>
 <form (submit)="agregartelefono()" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Tipo</mat-label>
@@ -50,4 +50,43 @@
   </div>
 
 
+</form> -->
+
+<form  [formGroup]="form">
+  <fieldset>
+    <legend>Telefono</legend>
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo</mat-label>
+      <input placeholder="Ej casa,trabajo,etc" matInput [formControl]="form.controls.tiponumero" formControlName="tiponumero" (blur)="onTouchedCb">
+      @if (formUtilidades.isvalidField(form,'tiponumero')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tiponumero")}}</mat-error>
+    }
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Codigo Pais</mat-label>
+      <input placeholder="Ex. +809" matInput [formControl]="form.controls.codigopais" formControlName="codigopais" (blur)="onTouchedCb">
+      @if (formUtilidades.isvalidField(form,'codigopais')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"codigopais")}}</mat-error>
+    }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+    <mat-label>Numero</mat-label>
+    <input  type="number" matInput [formControl]="form.controls.numero" formControlName="numero" (blur)="onTouchedCb">
+    @if (formUtilidades.isvalidField(form,'numero')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"numero")}}</mat-error>
+    }
+  </mat-form-field>
+  </fieldset>
+
+
+
 </form>
+
+
+
+
+
+

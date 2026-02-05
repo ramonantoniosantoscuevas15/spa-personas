@@ -11,7 +11,7 @@ import { CrearcorreoDTO } from './correosdto';
   selector: 'app-correos',
   imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule,MatButtonModule],
   templateUrl: './correos.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  
   providers:[
     {
       provide: NG_VALUE_ACCESSOR,
@@ -52,33 +52,35 @@ export class Correos implements ControlValueAccessor,Validator {
   formUtilidades = FormUtilidades
 
   form = this.fb.group({
+    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
 
-    correos:this.fb.array([
-      ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
-    ])
+    // correos:this.fb.array([
+    //   ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
+    // ])
   })
 
-  get correos(){
-    return this.form.get('correos') as FormArray
-  }
+  // get correos(){
+  //   return this.form.get('correos') as FormArray
+  // }
 
 
-  newcorreo(){
+  // newcorreo(){
 
-    this.correos.push(this.fb.control('',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]))
-  }
-  onDeletecorreo(index:number){
-    this.correos.removeAt(index)
+  //   this.correos.push(this.fb.control('',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]))
+  // }
+  // onDeletecorreo(index:number){
+  //   this.correos.removeAt(index)
 
-  }
+  // }
 
 
-  agregarcorreo(){
+   agregarcorreo(){
 
     const correo = this.form.value as CrearcorreoDTO
     this.postcorreo.emit(correo)
 
 
-  }
+   }
+
 }
 

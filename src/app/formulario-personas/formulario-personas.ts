@@ -17,32 +17,33 @@ import { Router } from '@angular/router';
   selector: 'app-formulario-personas',
   imports: [Personas,MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule,],
   templateUrl: './formulario-personas.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  
 })
 export class FormularioPersonas {
-  listacorreos:CrearcorreoDTO[]=[]
+
 
   categoriasSeleccionadas : SelectorMultipleDTO[] = []
   categoriasNoSeleccionadas : SelectorMultipleDTO[] = []
   personasServices = inject(PersonasServices)
   router = inject(Router)
 
-  constructor(){
-    this.personasServices.crearGet().subscribe(modelo=>{
+   constructor(){
+     this.personasServices.crearGet().subscribe(modelo=>{
       this.categoriasNoSeleccionadas = modelo.categorias.map(categoria=>{
         return <SelectorMultipleDTO>{id:categoria.id,tipo:categoria.tipo}
       })
-    })
-  }
+     })
+   }
 
   guardarPersonas(persona: CrearpersonaDTO){
-    this.personasServices.crear(persona).subscribe({
-      next: persona=>{
-        console.log(persona)
-        this.router.navigate(['/'])
+     this.personasServices.crear(persona).subscribe({
+       next: persona=>{
+         console.log(persona)
+         this.router.navigate(['/'])
 
       }
-    })
+     })
+    // console.log(persona)
 
   }
 

@@ -30,9 +30,17 @@ export class PersonasServices {
     formData.append('apellido',persona.apellido)
     formData.append('cedula',JSON.stringify(persona.cedula))
     //formData.append('fechanacimiento',persona.fechanacimiento.toISOString().split('T')[0])
-    formData.append('Correos',JSON.stringify(persona.Correos))
-    formData.append('Dirrecciones',JSON.stringify(persona.Dirreciones))
-    formData.append('Telefonos',JSON.stringify(persona.Telefonos))
+    formData.append('correos',JSON.stringify(persona.correos))
+    formData.append('tipodirrecion',persona.Dirreciones.tipodirrecion)
+    formData.append('ubicacion',JSON.stringify(persona.Dirreciones.ubicacion))
+    formData.append('ciudad',JSON.stringify(persona.Dirreciones.ciudad))
+    formData.append('provincia',JSON.stringify(persona.Dirreciones.provincia))
+    formData.append('codigopostal',JSON.stringify(persona.Dirreciones.codigopostal))
+    formData.append('pais',JSON.stringify(persona.Dirreciones.pais))
+
+    formData.append('tiponumero',JSON.stringify(persona.Telefonos))
+    formData.append('codigopais',JSON.stringify(persona.Telefonos))
+    formData.append('numero',JSON.stringify(persona.Telefonos))
     formData.append('categoriasIds', JSON.stringify(persona.categoriasIds))
     return formData
   }
