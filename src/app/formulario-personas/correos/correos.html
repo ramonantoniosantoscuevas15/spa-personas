@@ -64,10 +64,13 @@
     <legend>Correo</legend>
   <mat-form-field appearance="outline">
     <mat-label>Correo</mat-label>
-    <input matInput  [formControl]="form.controls.correo" formControlName="correo" (blur)="onTouchedCb">
-    @if (formUtilidades.isvalidField(form,'correo')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
+    <input matInput  [formControl]="form.controls.correos" formControlName="correos" (blur)="onTouchedCb">
+    @if (formUtilidades.isvalidField(form,'correos')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"correos")}}</mat-error>
     }
   </mat-form-field>
   </fieldset>
+  <button mat-flat-button
+    [disabled]="form.invalid">
+    Insertar Correo</button>
 </form>

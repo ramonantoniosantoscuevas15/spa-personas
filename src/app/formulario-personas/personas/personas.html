@@ -31,97 +31,18 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
   </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Correo</mat-label>
-    <input matInput  [formControl]="form.controls.correo" formControlName="correo" >
-    @if (formUtilidades.isvalidField(form,'correo')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"correo")}}</mat-error>
-    }
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Tipo:</mat-label>
-    <input matInput placeholder="ej trabajo, casa, etc."
-    [formControl]="form.controls.tipodirrecion"
-    formControlName="tipodirrecion"  />
-     @if (formUtilidades.isvalidField(form,'tipodirrecion')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"tipodirrecion")}}</mat-error>
-    }
 
 
-  </mat-form-field>
+   <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
+   <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
+  <app-telefonos (posttelefono)="agregartelefono($event)" ></app-telefonos>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Ubicacion:</mat-label>
-    <input matInput [formControl]="form.controls.ubicacion" formControlName="ubicacion"   />
-     @if (formUtilidades.isvalidField(form,'ubicacion')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"ubicacion")}}</mat-error>
-    }
-
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Ciudad:</mat-label>
-    <input matInput [formControl]="form.controls.ciudad" formControlName="ciudad"   />
-     @if (formUtilidades.isvalidField(form,'ciudad')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"ciudad")}}</mat-error>
-    }
-
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Provincia:</mat-label>
-    <input matInput [formControl]="form.controls.provincia" formControlName="provincia"  />
-       @if (formUtilidades.isvalidField(form,'provincia')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"provincia")}}</mat-error>
-    }
-
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Codigo Postal:</mat-label>
-    <input matInput [formControl]="form.controls.codigopostal" formControlName="codigopostal"  />
-       @if (formUtilidades.isvalidField(form,'codigopostal')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"codigopostal")}}</mat-error>
-    }
-
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Pais:</mat-label>
-    <input matInput [formControl]="form.controls.pais" formControlName="pais"   />
-       @if (formUtilidades.isvalidField(form,'pais')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"pais")}}</mat-error>
-    }
-
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-      <mat-label>Tipo</mat-label>
-      <input placeholder="Ej casa,trabajo,etc" matInput [formControl]="form.controls.tiponumero" formControlName="tiponumero" >
-      @if (formUtilidades.isvalidField(form,'tiponumero')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"tiponumero")}}</mat-error>
-    }
-
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Codigo Pais</mat-label>
-      <input placeholder="Ex. +809" matInput [formControl]="form.controls.codigopais" formControlName="codigopais" >
-      @if (formUtilidades.isvalidField(form,'codigopais')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"codigopais")}}</mat-error>
-    }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-    <mat-label>Numero</mat-label>
-    <input  type="number" matInput [formControl]="form.controls.numero" formControlName="numero" >
-    @if (formUtilidades.isvalidField(form,'numero')) {
-      <mat-error>{{formUtilidades.getFieldError(form,"numero")}}</mat-error>
-    }
-  </mat-form-field>
 
   <h4>Seleccione Las Categorias</h4>
   <app-selector-multiple [Seleccionados]="categoriasSeleccionadas" [NoSeleccionados]="categoriasNoSeleccionadas"></app-selector-multiple>
 
 
-   <!-- <app-correos formControlName="correos"  (postcorreo)="agregarcorreo($event)"></app-correos> -->
-  <!-- <app-dirreciones formControlName="dirrecciones" (postdirrecion)="agregardirrecion($event)"></app-dirreciones> -->
-  <!-- <app-telefonos formControlName="telefonos" (posttelefono)="agregartelefono($event)"></app-telefonos> -->
+
 
 
   <div class="contenedor-botones">

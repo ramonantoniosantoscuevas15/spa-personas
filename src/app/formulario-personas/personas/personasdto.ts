@@ -9,9 +9,9 @@ export interface personaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  correos: correoDTO[],
-  Dirreciones:dirrecionesDTO[],
-  Telefonos:telefonoDTO[],
+  Correos: correoDTO,
+  Dirreciones:dirrecionesDTO,
+  Telefonos:telefonoDTO,
 }
 
 export interface CrearpersonaDTO{
@@ -19,10 +19,9 @@ export interface CrearpersonaDTO{
   apellido:string,
   cedula:number,
   fechanacimiento : Date,
-  correos: CrearcorreoDTO,
-  Dirreciones:CreardirrecionesDTO,
-  Telefonos:CreartelefonoDTO,
-
+  Correos: CrearcorreoDTO[],
+  Dirrecciones:CreardirrecionesDTO[],
+  Telefonos:CreartelefonoDTO[], 
   categoriasIds?: number[]
 
 }

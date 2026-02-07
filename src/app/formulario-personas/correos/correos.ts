@@ -11,7 +11,7 @@ import { CrearcorreoDTO } from './correosdto';
   selector: 'app-correos',
   imports: [ReactiveFormsModule, MatFormFieldModule, FormsModule, MatInputModule,MatButtonModule],
   templateUrl: './correos.html',
-  
+
   providers:[
     {
       provide: NG_VALUE_ACCESSOR,
@@ -52,7 +52,7 @@ export class Correos implements ControlValueAccessor,Validator {
   formUtilidades = FormUtilidades
 
   form = this.fb.group({
-    correo: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
+    correos: ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],
 
     // correos:this.fb.array([
     //   ['',[Validators.required,Validators.pattern(this.formUtilidades.emailPattern)]],

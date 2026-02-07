@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Correos } from "../correos/correos";
-import { Dirreciones } from "../dirreciones/dirreciones";
+
 import { Telefonos } from "../telefonos/telefonos";
 import { CrearpersonaDTO, personaDTO } from './personasdto';
 import { CrearcorreoDTO } from '../correos/correosdto';
@@ -15,13 +15,16 @@ import { SelectorMultiple } from "../../componentes/selector-multiple/selector-m
 import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import moment from 'moment';
+import { Dirreciones } from '../dirreciones/dirreciones';
+
+
 
 
 
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, SelectorMultiple, MatDatepickerModule],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, SelectorMultiple, MatDatepickerModule, Dirreciones, Telefonos, Correos],
   templateUrl: './personas.html',
 
 
@@ -36,9 +39,9 @@ export class Personas implements OnInit {
   formUtilidades = FormUtilidades
   @Input() modelo?: personaDTO
   @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
-  listadocorreo: CrearcorreoDTO[] = []
-  listadotelefonos: CreartelefonoDTO[] = []
-  listadirreciones: CreardirrecionesDTO[] = []
+  correos: CrearcorreoDTO[] = []
+  telefonos: CreartelefonoDTO[] = []
+  dirreciones: CreardirrecionesDTO[] = []
   @Input({ required: true })
   categoriasNoSeleccionadas!: SelectorMultipleDTO[]
 
@@ -53,22 +56,32 @@ export class Personas implements OnInit {
     cedula: [0, [Validators.required, Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
 
-    correo: ['', [Validators.required, Validators.pattern(this.formUtilidades.emailPattern)]],
 
-    tipodirrecion: ['', [Validators.required, Validators.minLength(3)]],
-    ubicacion: ['', [Validators.required, Validators.minLength(3)]],
-    ciudad: ['', [Validators.required, Validators.minLength(3)]],
-    provincia: ['', [Validators.required, Validators.minLength(3)]],
-    codigopostal: ['', [Validators.required]],
-    pais: ['', [Validators.required, Validators.minLength(3)]],
-    tiponumero:['',[Validators.required, Validators.minLength(3)]],
-    codigopais:['',[Validators.required, Validators.minLength(3)]],
-    numero:[0,[Validators.required,Validators.min(1)]],
+    //  dirreciones: {
+    //   tipodirrecion: '',
+    //   ubicacion: '',
+    //   ciudad: '',
+    //   provincia: '',
+    //   codigopostal: '',
+    //   pais: '',
+    // },
+    // telefonos: {
+    //   tiponumero: '',
+    //   codigopais: '',
+    //   numero: 0,
+    // },
+
+
+
 
 
 
 
   })
+
+
+
+
 
 
 
@@ -84,9 +97,11 @@ export class Personas implements OnInit {
     // persona.Correos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
     persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
-    // persona.Correos = this.listadocorreo as any
-    // persona.Dirreciones = this.listadirreciones
-    // persona.Telefonos = this.listadotelefonos
+
+
+    persona.Correos = this.correos
+    persona.Dirrecciones = this.dirreciones
+    persona.Telefonos = this.telefonos 
     const categoriasIds = this.categoriasSeleccionadas.map(val => val.id)
 
 
@@ -104,22 +119,22 @@ export class Personas implements OnInit {
   }
   agregarcorreo(correos: CrearcorreoDTO) {
 
-    this.listadocorreo.push(correos)
+    this.correos.push(correos)
 
-    console.log(this.listadocorreo)
+    console.log(this.correos)
 
 
 
   }
   agregartelefono(telefono: CreartelefonoDTO) {
-    this.listadotelefonos.push(telefono)
-    console.log(this.listadotelefonos)
+    this.telefonos.push(telefono)
+    console.log(this.telefonos)
 
   }
 
   agregardirrecion(dirreciones: CreardirrecionesDTO) {
-    this.listadirreciones.push(dirreciones)
-    console.log(this.listadirreciones)
+    this.dirreciones.push(dirreciones)
+    console.log(this.dirreciones)
 
   }
 

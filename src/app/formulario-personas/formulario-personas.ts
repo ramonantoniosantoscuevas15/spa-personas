@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   selector: 'app-formulario-personas',
   imports: [Personas,MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule,],
   templateUrl: './formulario-personas.html',
-  
+
 })
 export class FormularioPersonas {
 
