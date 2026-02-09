@@ -5,5 +5,5 @@ export interface correoDTO{
 }
 
 export interface CrearcorreoDTO{
-  Correos:string,
+  correos:string,
 }

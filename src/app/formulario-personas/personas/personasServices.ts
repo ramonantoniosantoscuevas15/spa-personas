@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -13,14 +13,20 @@ export class PersonasServices {
 
   private http = inject(HttpClient)
   private urlbase = environment.apiUrl + '/personas'
+  private httpOptions = {
+  headers: new HttpHeaders({'Content-Type': `${this.urlbase}/json`})
+}
 
   public crearGet(): Observable<CategoriaPersonadto>{
     return this.http.get<CategoriaPersonadto>(`${this.urlbase}/PostCategoria`)
   }
 
-  public crear(persona: CrearpersonaDTO){
+  public crear(persona: CrearpersonaDTO):Observable<personaDTO>{
+  //  const formdata = this.construirFormData(persona)
 
-    return this.http.post(this.urlbase,persona)
+
+    return this.http.post<personaDTO>(this.urlbase,persona)
+
 
   }
 
@@ -30,11 +36,11 @@ export class PersonasServices {
     formData.append('apellido',persona.apellido)
     formData.append('cedula',JSON.stringify(persona.cedula))
     formData.append('fechanacimiento',persona.fechanacimiento.toISOString().split('T')[0])
-    formData.append('correos',JSON.stringify(persona.Correos))
-    formData.append('dirreccion',JSON.stringify(persona.Dirrecciones))
+     formData.append('correos',JSON.stringify(persona.Correos))
+     formData.append('dirreciones',JSON.stringify(persona.Dirrecciones))
 
 
-    formData.append('telefonos',JSON.stringify(persona.Telefonos))
+     formData.append('telefonos',JSON.stringify(persona.Telefonos))
 
     formData.append('categoriasIds', JSON.stringify(persona.categoriasIds))
     return formData

@@ -8,6 +8,7 @@ import { Categorias } from './categorias/categorias';
 import { FormularioCategorias } from './categorias/formulario-categorias/formulario-categorias';
 import { EditarCategorias } from './categorias/editar-categorias/editar-categorias';
 import { IndiceCategoria } from './categorias/indice-categoria/indice-categoria';
+import { ListadoPersonas } from './formulario-personas/listado-personas/listado-personas';
 
 export const routes: Routes = [
   {
@@ -75,6 +76,10 @@ export const routes: Routes = [
     path:'indice-categoria',
     component:IndiceCategoria
 
+  },
+  {
+    path:'listado-personas',
+    component:ListadoPersonas
   },
   {
     path: '**',

@@ -21,7 +21,7 @@ export interface CrearpersonaDTO{
   fechanacimiento : Date,
   Correos: CrearcorreoDTO[],
   Dirrecciones:CreardirrecionesDTO[],
-  Telefonos:CreartelefonoDTO[], 
+  Telefonos:CreartelefonoDTO[],
   categoriasIds?: number[]
 
 }

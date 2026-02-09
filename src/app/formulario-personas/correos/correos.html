@@ -59,7 +59,7 @@
 
 </div> -->
 <!-- </form> -->
-<form (submit)="agregarcorreo()"   [formGroup]="form">
+<form (ngSubmit)="agregarcorreo()"   [formGroup]="form">
     <fieldset >
     <legend>Correo</legend>
   <mat-form-field appearance="outline">
@@ -70,7 +70,7 @@
     }
   </mat-form-field>
   </fieldset>
-  <button mat-flat-button
+   <button mat-flat-button
     [disabled]="form.invalid">
     Insertar Correo</button>
 </form>

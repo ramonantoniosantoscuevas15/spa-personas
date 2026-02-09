@@ -52,7 +52,7 @@
 
 </form> -->
 
-<form (submit)="agregartelefono()"  [formGroup]="form">
+<form (ngSubmit)="agregartelefono()" [formGroup]="form">
   <fieldset>
     <legend>Telefono</legend>
     <mat-form-field appearance="outline">
@@ -80,7 +80,7 @@
     }
   </mat-form-field>
   </fieldset>
-  <div class="contenedor-botones">
+    <div class="contenedor-botones">
     <button mat-flat-button [disabled]="form.invalid">
       Insertar Telefono</button>
 
