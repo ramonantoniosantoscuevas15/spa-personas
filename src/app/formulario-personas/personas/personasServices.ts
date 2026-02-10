@@ -1,8 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { CategoriaPersonadto, CrearpersonaDTO, personaDTO } from './personasdto';
+import { PaginacionDTO } from '../../componentes/models/Paginaciondto';
+import { contruirQueryParams } from '../../componentes/funciones/queris/construitQueryParams';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,11 @@ export class PersonasServices {
   private httpOptions = {
   headers: new HttpHeaders({'Content-Type': `${this.urlbase}/json`})
 }
+  public obtenertodos(paginacion: PaginacionDTO): Observable<HttpResponse<personaDTO[]>>{
+    let queryparams = contruirQueryParams(paginacion)
+    return this.http.get<personaDTO[]>(this.urlbase,{params: queryparams, observe: 'response'})
+
+  }
 
   public crearGet(): Observable<CategoriaPersonadto>{
     return this.http.get<CategoriaPersonadto>(`${this.urlbase}/PostCategoria`)

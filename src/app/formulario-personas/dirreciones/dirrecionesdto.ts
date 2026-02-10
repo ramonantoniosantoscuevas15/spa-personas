@@ -1,6 +1,6 @@
 export interface dirrecionesDTO{
   id:number,
-  tipo:string,
+  tipodirrecion:string,
   ubicacion:string,
   ciudad:string,
   provincia:string,

@@ -1,6 +1,6 @@
 export interface telefonoDTO {
   id: number,
-  tipo: string,
+  tiponumero: string,
   codigopais: string,
   numero: number,
   idpersona:number
