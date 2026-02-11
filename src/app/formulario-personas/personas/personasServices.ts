@@ -29,10 +29,10 @@ export class PersonasServices {
   }
 
   public crear(persona: CrearpersonaDTO):Observable<personaDTO>{
-  //  const formdata = this.construirFormData(persona)
+    const formdata = this.construirFormData(persona)
 
 
-    return this.http.post<personaDTO>(this.urlbase,persona)
+    return this.http.post<personaDTO>(this.urlbase,formdata)
 
 
   }

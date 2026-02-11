@@ -8,17 +8,18 @@ import { HttpResponse } from '@angular/common/http';
 import { ListadoGenerico } from "../../componentes/listado-generico/listado-generico";
 import { MatTableModule } from '@angular/material/table';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-listado-personas',
-  imports: [MatAnchor, RouterLink, ListadoGenerico, MatTableModule, MatButtonModule, MatPaginator],
+  imports: [MatAnchor, RouterLink, ListadoGenerico, MatTableModule, MatButtonModule, MatPaginator,JsonPipe],
   templateUrl: './listado-personas.html',
 
 })
 export class ListadoPersonas {
   private personaservice = inject(PersonasServices)
   personas!:personaDTO[]
-  columnasAMostrar = ['id','nombre','apellido','cedula','fechanacimiento','correos','dirrecciones','telefonos']
+  columnasAMostrar = ['id','nombre','apellido','cedula','fechanacimiento','correos','dirrecciones','telefonos','categorias']
   paginacion:PaginacionDTO={pagina:1,recordsPorPagina:5}
   cantidadTotalRegistros!:number
 
@@ -34,6 +35,7 @@ export class ListadoPersonas {
     })
 
   }
+
   actualizarPaginacion(datos:PageEvent){
     this.paginacion = {pagina: datos.pageIndex+1,recordsPorPagina: datos.pageSize}
     this.Cargarregistros()

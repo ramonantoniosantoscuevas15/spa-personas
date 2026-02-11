@@ -12,6 +12,7 @@ export interface personaDTO{
   Correos: correoDTO[],
   Dirreciones:dirrecionesDTO[],
   Telefonos:telefonoDTO[],
+  categorias:CategoriaDTO[]
 }
 
 export interface CrearpersonaDTO{
