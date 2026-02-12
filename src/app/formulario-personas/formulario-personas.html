@@ -1,3 +1,9 @@
+@if(categoriasNoSeleccionadas){
 <app-personas (postPersona)="guardarPersonas($event)" [categoriasNoSeleccionadas]="categoriasNoSeleccionadas" [categoriasSeleccionadas]="categoriasSeleccionadas"></app-personas>
+
+}
+@else {
+  <app-cargando></app-cargando>
+}
 
 

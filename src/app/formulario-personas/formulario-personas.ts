@@ -9,13 +9,14 @@ import { MatInputModule } from '@angular/material/input';
 import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-multiplemodelo';
 import { PersonasServices } from './personas/personasServices';
 import { Router } from '@angular/router';
+import { Cargando } from "../componentes/cargando/cargando";
 
 
 
 
 @Component({
   selector: 'app-formulario-personas',
-  imports: [Personas,MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule,],
+  imports: [Personas, MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, Cargando],
   templateUrl: './formulario-personas.html',
 
 })
