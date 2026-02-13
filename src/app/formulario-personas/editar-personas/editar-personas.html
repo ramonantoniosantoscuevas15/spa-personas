@@ -1,2 +1,7 @@
-<app-personas [modelo]="persona" (postPersona)="guardarPersonas($event)" [categoriasNoSeleccionadas]="categoriasNoSeleccionadas"
+@if(categoriasNoSeleccionadas){
+ <app-personas [modelo]="persona" (postPersona)="guardarPersonas($event)" [categoriasNoSeleccionadas]="categoriasNoSeleccionadas"
 [categoriasSeleccionadas]="categoriasSeleccionadas"></app-personas >
+}@else {
+  <app-cargando></app-cargando>
+}
+

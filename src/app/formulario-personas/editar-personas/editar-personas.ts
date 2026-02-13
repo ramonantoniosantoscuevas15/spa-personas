@@ -3,10 +3,12 @@ import { Personas } from "../personas/personas";
 import { CrearpersonaDTO, personaDTO } from '../personas/personasdto';
 import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selector-multiplemodelo';
 import { PersonasServices } from '../personas/personasServices';
+import { Cargando } from "../../componentes/cargando/cargando";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-personas',
-  imports: [Personas],
+  imports: [Personas, Cargando],
   templateUrl: './editar-personas.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -27,9 +29,15 @@ export class EditarPersonas implements OnInit {
   categoriasSeleccionadas!: SelectorMultipleDTO[]
   categoriasNoSeleccionadas!: SelectorMultipleDTO[]
   personasServices = inject(PersonasServices)
+  router = inject(Router)
 
 guardarPersonas(persona: CrearpersonaDTO){
-  
+this.personasServices.actualizar(this.id,persona).subscribe({
+  next:()=>{
+    this.router.navigate(['/'])
+  }
+
+})
 
 }
 }
