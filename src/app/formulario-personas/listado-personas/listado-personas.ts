@@ -19,7 +19,7 @@ import { JsonPipe } from '@angular/common';
 export class ListadoPersonas {
   private personaservice = inject(PersonasServices)
   personas!:personaDTO[]
-  columnasAMostrar = ['id','nombre','apellido','cedula','fechanacimiento','correos','dirrecciones','telefonos','categorias']
+  columnasAMostrar = ['id','nombre','apellido','cedula','fechanacimiento','correos','dirrecciones','telefonos','acciones']
   paginacion:PaginacionDTO={pagina:1,recordsPorPagina:5}
   cantidadTotalRegistros!:number
 

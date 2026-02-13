@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { CategoriaPersonadto, CrearpersonaDTO, personaDTO } from './personasdto';
+import { CategoriaPersonadto, CrearpersonaDTO, personaDTO, PersonasPutGetDTO } from './personasdto';
 import { PaginacionDTO } from '../../componentes/models/Paginaciondto';
 import { contruirQueryParams } from '../../componentes/funciones/queris/construitQueryParams';
 
@@ -15,9 +15,15 @@ export class PersonasServices {
 
   private http = inject(HttpClient)
   private urlbase = environment.apiUrl + '/personas'
-  private httpOptions = {
-  headers: new HttpHeaders({'Content-Type': `${this.urlbase}/json`})
-}
+
+
+
+
+
+
+
+
+
   public obtenertodos(paginacion: PaginacionDTO): Observable<HttpResponse<personaDTO[]>>{
     let queryparams = contruirQueryParams(paginacion)
     return this.http.get<personaDTO[]>(this.urlbase,{params: queryparams, observe: 'response'})
@@ -25,14 +31,25 @@ export class PersonasServices {
   }
 
   public crearGet(): Observable<CategoriaPersonadto>{
+
     return this.http.get<CategoriaPersonadto>(`${this.urlbase}/PostCategoria`)
+  }
+  public actualizarGet(id:number):Observable<PersonasPutGetDTO>{
+    return this.http.get<PersonasPutGetDTO>(`${this.urlbase}/Putget/${id}`)
+
+  }
+
+  public actualizar(id:number,persona: CrearpersonaDTO){
+    return this.http.put(`${this.urlbase}/${id}`,persona)
   }
 
   public crear(persona: CrearpersonaDTO):Observable<personaDTO>{
-    const formdata = this.construirFormData(persona)
+    const headerOptions = new HttpHeaders();
+    headerOptions.set('Content-Type', 'application/json');
 
 
-    return this.http.post<personaDTO>(this.urlbase,formdata)
+
+    return this.http.post<personaDTO>(this.urlbase,persona,{headers: headerOptions})
 
 
   }
@@ -49,7 +66,7 @@ export class PersonasServices {
 
      formData.append('telefonos',JSON.stringify(persona.Telefonos))
 
-    formData.append('categoriasIds', JSON.stringify(persona.categoriasIds))
+    formData.append('categoriasIds', JSON.stringify(persona.CategoriasId))
     return formData
   }
 

@@ -23,10 +23,16 @@ export interface CrearpersonaDTO{
   Correos: CrearcorreoDTO[],
   Dirrecciones:CreardirrecionesDTO[],
   Telefonos:CreartelefonoDTO[],
-  categoriasIds?: number[]
+  CategoriasId?: number[]
 
 }
 
 export interface CategoriaPersonadto{
   categorias:CategoriaDTO[]
+}
+
+export interface PersonasPutGetDTO{
+  persona: personaDTO
+  categoriasSeleccionadas: CategoriaDTO[]
+  categoriasNoSeleccionadas: CategoriaDTO[]
 }

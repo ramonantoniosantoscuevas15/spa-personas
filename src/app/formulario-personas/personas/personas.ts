@@ -81,15 +81,6 @@ export class Personas implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
   guardarPersonas() {
 
     const persona = this.form.value as CrearpersonaDTO
@@ -104,10 +95,10 @@ export class Personas implements OnInit {
       persona.Correos=this.correos
       persona.Dirrecciones = this.dirreciones
      persona.Telefonos = this.telefonos
-    const categoriasIds = this.categoriasSeleccionadas.map(val => val.id)
+    const categoriasId = this.categoriasSeleccionadas.map(val => val.id)
 
 
-    persona.categoriasIds = categoriasIds
+    persona.CategoriasId = categoriasId
 
 
 
