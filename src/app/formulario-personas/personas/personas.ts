@@ -8,7 +8,7 @@ import { Correos } from "../correos/correos";
 
 import { Telefonos } from "../telefonos/telefonos";
 import { CrearpersonaDTO, personaDTO } from './personasdto';
-import { CrearcorreoDTO } from '../correos/correosdto';
+import { correoDTO, CrearcorreoDTO } from '../correos/correosdto';
 import { CreartelefonoDTO } from '../telefonos/telefonosdto';
 import { CreardirrecionesDTO } from '../dirreciones/dirrecionesdto';
 import { SelectorMultiple } from "../../componentes/selector-multiple/selector-multiple";
@@ -42,6 +42,7 @@ export class Personas implements OnInit {
   correos: CrearcorreoDTO[] = []
   telefonos: CreartelefonoDTO[] = []
   dirreciones: CreardirrecionesDTO[] = []
+  correoed?: correoDTO
   @Input({ required: true })
   categoriasNoSeleccionadas!: SelectorMultipleDTO[]
 
@@ -55,7 +56,7 @@ export class Personas implements OnInit {
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: [0, [Validators.required, Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
- 
+
   })
 
 

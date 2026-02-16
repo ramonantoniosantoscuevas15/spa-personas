@@ -1,4 +1,4 @@
-
+<!--
 <form (ngSubmit)="guardarPersonas()" [formGroup]="form">
   <mat-form-field appearance="outline">
     <mat-label>Nombre:</mat-label>
@@ -45,5 +45,12 @@
   </div>
 
 
-</form>
+</form> -->
+@if(persona){
+  <app-personas (postPersona)="guardarPersonas($event)" [modelo]="persona"[categoriasNoSeleccionadas]="categoriasNoSeleccionadas" [categoriasSeleccionadas]="categoriasSeleccionadas"></app-personas>
+
+
+}@else {
+  <app-cargando></app-cargando>
+}
 

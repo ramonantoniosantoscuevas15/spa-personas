@@ -13,6 +13,7 @@ import { EditarPersonas } from './formulario-personas/personas/editar-personas/e
 import { EditarCorreos } from './formulario-personas/correos/editar-correos/editar-correos';
 import { EditarDirreciones } from './formulario-personas/dirreciones/editar-dirreciones/editar-dirreciones';
 import { EditarTelefonos } from './formulario-personas/telefonos/editar-telefonos/editar-telefonos';
+import { EditarFormulario } from './formulario-personas/editar-formulario/editar-formulario';
 
 export const routes: Routes = [
   // {
@@ -46,9 +47,8 @@ export const routes: Routes = [
    {
      path:'personas',
      component:Personas,
-
-    },
-    {
+     children:[
+      {
          path:'correos',
          component:Correos
       },
@@ -60,6 +60,11 @@ export const routes: Routes = [
          path:'dirreciones',
          component:Dirreciones
        },
+
+     ]
+
+    },
+
 
   {
     path: 'categorias',
@@ -83,20 +88,24 @@ export const routes: Routes = [
     component:ListadoPersonas
   },
   {
-    path:'editar-personas',
+    path:'editar-personas/:id',
     component:EditarPersonas
   },
   {
-    path:'editar-correos',
+    path:'editar-correos/:id',
     component:EditarCorreos
   },
   {
-    path:'editar-dirreciones',
+    path:'editar-dirreciones/:id',
     component:EditarDirreciones
   },
   {
-    path:'editar-telefonos',
+    path:'editar-telefonos/:id',
     component:EditarTelefonos
+  },
+  {
+    path:'editar-formulario/:id',
+    component:EditarFormulario
   },
   {
     path: '**',

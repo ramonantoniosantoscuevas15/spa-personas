@@ -31,7 +31,7 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 
   </mat-form-field>
-  
+
 
 
 
@@ -41,7 +41,7 @@
 <app-dirreciones formControlName="dirreciones"></app-dirreciones>
 <app-telefonos formControlName="telefonos"></app-telefonos> -->
 
-      <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
+      <app-correos [modelo]="correoed" (postcorreo)="agregarcorreo($event)"></app-correos>
    <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
   <app-telefonos (posttelefono)="agregartelefono($event)" ></app-telefonos>
 
