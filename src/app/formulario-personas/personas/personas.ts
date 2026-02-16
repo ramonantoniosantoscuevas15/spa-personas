@@ -55,29 +55,9 @@ export class Personas implements OnInit {
     apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
     cedula: [0, [Validators.required, Validators.min(1)]],
     fechanacimiento: new FormControl<Date | null>(null),
-  //   correos: [{
-  //      correos: '',
-  //    }],
-  //  dirreciones: [{
-  //     tipodirrecion: '',
-  //     ubicacion: '',
-  //     ciudad: '',
-  //     provincia: '',
-  //      codigopostal: '',
-  //      pais: '',
-  //   }],
-  //   telefonos: [{
-  //     tiponumero: '',
-  //     codigopais: '',
-  //    numero: 0
-
-  //   },]
-
-
-
-
-
+ 
   })
+
 
 
 
@@ -93,8 +73,8 @@ export class Personas implements OnInit {
 
 
       persona.Correos=this.correos
-      persona.Dirrecciones = this.dirreciones
-     persona.Telefonos = this.telefonos
+       persona.Dirrecciones = this.dirreciones
+      persona.Telefonos = this.telefonos
     const categoriasId = this.categoriasSeleccionadas.map(val => val.id)
 
 

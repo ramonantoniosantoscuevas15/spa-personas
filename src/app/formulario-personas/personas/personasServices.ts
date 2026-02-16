@@ -44,12 +44,12 @@ export class PersonasServices {
   }
 
   public crear(persona: CrearpersonaDTO):Observable<personaDTO>{
-    const headerOptions = new HttpHeaders();
-    headerOptions.set('Content-Type', 'application/json');
 
 
 
-    return this.http.post<personaDTO>(this.urlbase,persona,{headers: headerOptions})
+
+
+    return this.http.post<personaDTO>(this.urlbase,persona)
 
 
   }
@@ -61,10 +61,17 @@ export class PersonasServices {
     formData.append('cedula',JSON.stringify(persona.cedula))
     formData.append('fechanacimiento',persona.fechanacimiento.toISOString().split('T')[0])
      formData.append('correos',JSON.stringify(persona.Correos))
-     formData.append('dirreciones',JSON.stringify(persona.Dirrecciones))
+     formData.append('tipodirrecion',JSON.stringify(persona.Dirrecciones))
+     formData.append('ubicacion',JSON.stringify(persona.Dirrecciones))
+     formData.append('ciudad',JSON.stringify(persona.Dirrecciones))
+     formData.append('provincia',JSON.stringify(persona.Dirrecciones))
+     formData.append('codigopostal',JSON.stringify(persona.Dirrecciones))
+     formData.append('pais',JSON.stringify(persona.Dirrecciones))
 
+     formData.append('tiponumero',JSON.stringify(persona.Telefonos))
+     formData.append('codigopais',JSON.stringify(persona.Telefonos))
+     formData.append('numero',JSON.stringify(persona.Telefonos))
 
-     formData.append('telefonos',JSON.stringify(persona.Telefonos))
 
     formData.append('categoriasIds', JSON.stringify(persona.CategoriasId))
     return formData

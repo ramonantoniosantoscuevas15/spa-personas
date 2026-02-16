@@ -1,0 +1,74 @@
+<form (ngSubmit)="editardirrecion()"  [formGroup]="form">
+  <fieldset>
+    <legend>Dirreicones</legend>
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo:</mat-label>
+    <input matInput placeholder="ej trabajo, casa, etc."
+    [formControl]="form.controls.tipodirrecion"
+    formControlName="tipodirrecion"  />
+     @if (formUtilidades.isvalidField(form,'tipodirrecion')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"tipodirrecion")}}</mat-error>
+    }
+
+
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Ubicacion:</mat-label>
+    <input matInput [formControl]="form.controls.ubicacion" formControlName="ubicacion"   />
+     @if (formUtilidades.isvalidField(form,'ubicacion')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"ubicacion")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ciudad:</mat-label>
+    <input matInput [formControl]="form.controls.ciudad" formControlName="ciudad"   />
+     @if (formUtilidades.isvalidField(form,'ciudad')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"ciudad")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Provincia:</mat-label>
+    <input matInput [formControl]="form.controls.provincia" formControlName="provincia"   />
+       @if (formUtilidades.isvalidField(form,'provincia')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"provincia")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Codigo Postal:</mat-label>
+    <input matInput [formControl]="form.controls.codigopostal" formControlName="codigopostal"  />
+       @if (formUtilidades.isvalidField(form,'codigopostal')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"codigopostal")}}</mat-error>
+    }
+
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Pais:</mat-label>
+    <input matInput [formControl]="form.controls.pais" formControlName="pais"   />
+       @if (formUtilidades.isvalidField(form,'pais')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"pais")}}</mat-error>
+    }
+
+  </mat-form-field>
+  </fieldset>
+    <div class="contenedor-botones">
+    <button mat-flat-button [disabled]="form.invalid">
+      Insertar Dirrecion</button>
+
+  </div>
+
+  <!-- <div class="contenedor-botones">
+    <button mat-flat-button
+    [disabled]="form.invalid">
+    guardarCambios</button>
+    <a mat-stroked-button routerLink="/">Cancelar</a>
+  </div> -->
+
+
+
+
+</form>
+

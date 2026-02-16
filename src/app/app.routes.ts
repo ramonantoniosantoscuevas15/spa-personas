@@ -9,57 +9,57 @@ import { FormularioCategorias } from './categorias/formulario-categorias/formula
 import { EditarCategorias } from './categorias/editar-categorias/editar-categorias';
 import { IndiceCategoria } from './categorias/indice-categoria/indice-categoria';
 import { ListadoPersonas } from './formulario-personas/listado-personas/listado-personas';
-import { EditarPersonas } from './formulario-personas/editar-personas/editar-personas';
+import { EditarPersonas } from './formulario-personas/personas/editar-personas/editar-personas';
+import { EditarCorreos } from './formulario-personas/correos/editar-correos/editar-correos';
+import { EditarDirreciones } from './formulario-personas/dirreciones/editar-dirreciones/editar-dirreciones';
+import { EditarTelefonos } from './formulario-personas/telefonos/editar-telefonos/editar-telefonos';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: FormularioPersonas,
-    children: [
-      {
-        path: 'personas',
-        component: Personas
-      },
-      {
-        path: 'correos',
-        component: Correos
-      },
-      {
-        path: 'telefonos',
-        component: Telefonos
-      },
-      {
-        path: 'dirreciones',
-        component: Dirreciones
-
-      }
-    ]
-
-  },
   // {
-  //   path:'',
-  //   component:FormularioPersonas
-  // },
-  // {
-  //   path:'personas',
-  //   component:Personas,
-  //   children:[
+  //   path: '',
+  //   component: FormularioPersonas,
+  //   children: [
   //     {
-  //       path:'correos',
-  //       component:Correos
+  //       path: 'personas',
+  //       component: Personas
   //     },
   //     {
-  //       path:'telefonos',
-  //       component:Telefonos
+  //       path: 'correos',
+  //       component: Correos
   //     },
   //     {
-  //       path:'dirreciones',
-  //       component:Dirreciones
+  //       path: 'telefonos',
+  //       component: Telefonos
   //     },
+  //     {
+  //       path: 'dirreciones',
+  //       component: Dirreciones
 
-
+  //     }
   //   ]
+
   // },
+   {
+    path:'',
+    component:FormularioPersonas
+   },
+   {
+     path:'personas',
+     component:Personas,
+
+    },
+    {
+         path:'correos',
+         component:Correos
+      },
+       {
+         path:'telefonos',
+         component:Telefonos
+       },
+      {
+         path:'dirreciones',
+         component:Dirreciones
+       },
 
   {
     path: 'categorias',
@@ -83,8 +83,20 @@ export const routes: Routes = [
     component:ListadoPersonas
   },
   {
-    path:'editar-personas/:id',
+    path:'editar-personas',
     component:EditarPersonas
+  },
+  {
+    path:'editar-correos',
+    component:EditarCorreos
+  },
+  {
+    path:'editar-dirreciones',
+    component:EditarDirreciones
+  },
+  {
+    path:'editar-telefonos',
+    component:EditarTelefonos
   },
   {
     path: '**',

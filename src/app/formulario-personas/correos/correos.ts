@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Input, OnInit, Output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormBuilder, Validators, FormArray, FormControl, ControlValueAccessor, Validator, AbstractControl, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
-import { CrearcorreoDTO } from './correosdto';
+import { correoDTO, CrearcorreoDTO } from './correosdto';
 
 @Component({
   selector: 'app-correos',
@@ -25,7 +25,13 @@ import { CrearcorreoDTO } from './correosdto';
     }
   ]
 })
-export class Correos implements ControlValueAccessor,Validator {
+export class Correos implements ControlValueAccessor,Validator,OnInit {
+  ngOnInit(): void {
+    if (this.modelo !== undefined) {
+      this.form.patchValue(this.modelo)
+    }
+
+  }
  validate(control: AbstractControl): ValidationErrors | null {
     return this.form.valid ? null: {invalidEmails: true}
   }
@@ -47,6 +53,7 @@ export class Correos implements ControlValueAccessor,Validator {
   ngOnDestroy():void{
     this.sub?.unsubscribe()
   }
+  @Input() modelo?: correoDTO
   @Output() postcorreo = new EventEmitter<CrearcorreoDTO>()
    private fb = inject(FormBuilder)
   formUtilidades = FormUtilidades

@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, inject, Input, OnInit, Output } from '@angular/core';
 import { MatFormField, MatLabel, MatFormFieldModule } from "@angular/material/form-field";
 import { MatInput, MatInputModule } from "@angular/material/input";
 import { FormUtilidades } from '../../utils/form-utilidades';
 import { AbstractControl, ControlValueAccessor, FormArray, FormBuilder, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { CreardirrecionesDTO } from './dirrecionesdto';
+import { CreardirrecionesDTO, dirrecionesDTO } from './dirrecionesdto';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,7 +28,12 @@ import { Subscription } from 'rxjs';
   ]
 
 })
-export class Dirreciones implements ControlValueAccessor,Validator {
+export class Dirreciones implements ControlValueAccessor,Validator, OnInit {
+  ngOnInit(): void {
+    if (this.modelo !== undefined) {
+      this.form.patchValue(this.modelo)
+    }
+  }
   validate(control: AbstractControl): ValidationErrors | null {
     return this.form.valid ? null : { invalidDirreciones: true }
   }
@@ -50,6 +55,7 @@ export class Dirreciones implements ControlValueAccessor,Validator {
     this.sub?.unsubscribe()
   }
   formUtilidades = FormUtilidades
+  @Input() modelo? : dirrecionesDTO
   private fb = inject(FormBuilder)
   @Output() postdirrecion = new EventEmitter<CreardirrecionesDTO>()
   form = this.fb.group({

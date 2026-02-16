@@ -1,0 +1,14 @@
+<form (ngSubmit)="editarcorreo()"   [formGroup]="form">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Correo</mat-label>
+    <input matInput  [formControl]="form.controls.correos" formControlName="correos" >
+    @if (formUtilidades.isvalidField(form,'correos')) {
+      <mat-error>{{formUtilidades.getFieldError(form,"correos")}}</mat-error>
+    }
+  </mat-form-field>
+  
+   <button mat-flat-button
+    [disabled]="form.invalid">
+    Insertar Correo</button>
+</form>
