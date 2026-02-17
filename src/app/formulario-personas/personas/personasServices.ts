@@ -43,6 +43,11 @@ export class PersonasServices {
     return this.http.put(`${this.urlbase}/${id}`,persona)
   }
 
+  public borrar(id: number){
+    return this.http.delete(`${this.urlbase}/${id}`)
+   }
+
+
   public crear(persona: CrearpersonaDTO):Observable<personaDTO>{
 
 

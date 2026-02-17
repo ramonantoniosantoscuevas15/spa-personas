@@ -9,10 +9,11 @@ import { ListadoGenerico } from "../../componentes/listado-generico/listado-gene
 import { MatTableModule } from '@angular/material/table';
 import { PageEvent, MatPaginator } from '@angular/material/paginator';
 import { JsonPipe } from '@angular/common';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @Component({
   selector: 'app-listado-personas',
-  imports: [MatAnchor, RouterLink, ListadoGenerico, MatTableModule, MatButtonModule, MatPaginator,JsonPipe],
+  imports: [MatAnchor, RouterLink, ListadoGenerico, MatTableModule, MatButtonModule, MatPaginator,JsonPipe,SweetAlert2Module],
   templateUrl: './listado-personas.html',
 
 })
@@ -39,5 +40,12 @@ export class ListadoPersonas {
   actualizarPaginacion(datos:PageEvent){
     this.paginacion = {pagina: datos.pageIndex+1,recordsPorPagina: datos.pageSize}
     this.Cargarregistros()
+  }
+  borrar(id:number){
+    this.personaservice.borrar(id).subscribe(()=>{
+      this.paginacion= {pagina:1,recordsPorPagina:5}
+      this.Cargarregistros()
+    })
+
   }
  }
