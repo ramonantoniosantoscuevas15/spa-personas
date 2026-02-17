@@ -39,5 +39,8 @@ export class CategoriaServices {
    public borrar(id: number){
     return this.http.delete(`${this.urlBase}/${id}`)
    }
+   public obtenercategorias():Observable<CategoriaDTO[]>{
+    return this.http.get<CategoriaDTO[]>(`${this.urlBase}/todos`)
+   }
 
 }

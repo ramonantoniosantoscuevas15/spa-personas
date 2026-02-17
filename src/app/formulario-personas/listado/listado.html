@@ -1,0 +1,25 @@
+<h2>Datos de la Perosna</h2>
+<button mat-flat-button routerLink="/">Crear Personas</button>
+<app-listado-generico [listado]="personas">
+  <ng-container contenido>
+    <div class="personas-contenedor">
+    @for (persona of personas; track $index) {
+      <div class="persona-contenedor">
+      <p>Nombre: {{persona.nombre}}</p>
+      <p>Apellido: {{persona.apellido}}</p>
+      <p>Cedula: {{persona.cedula}}</p>
+      <p>Fecha Nacimiento:{{persona.fechanacimiento}}</p>
+
+        <div>
+          <a [routerLink]="['/editar-personas/',persona.id]" button mat-flat-button class="primary">Editar</a>
+          
+        </div>
+
+      </div>
+    }
+
+   </div>
+
+  </ng-container>
+
+</app-listado-generico>

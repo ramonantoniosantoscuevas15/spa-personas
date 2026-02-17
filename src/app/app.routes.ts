@@ -14,6 +14,7 @@ import { EditarCorreos } from './formulario-personas/correos/editar-correos/edit
 import { EditarDirreciones } from './formulario-personas/dirreciones/editar-dirreciones/editar-dirreciones';
 import { EditarTelefonos } from './formulario-personas/telefonos/editar-telefonos/editar-telefonos';
 import { EditarFormulario } from './formulario-personas/editar-formulario/editar-formulario';
+import { Filtropersonas } from './formulario-personas/personas/filtropersonas/filtropersonas';
 
 export const routes: Routes = [
   // {
@@ -106,6 +107,11 @@ export const routes: Routes = [
   {
     path:'editar-formulario/:id',
     component:EditarFormulario
+  },
+  {
+    path:'filtropersonas',
+    component:Filtropersonas
+
   },
   {
     path: '**',

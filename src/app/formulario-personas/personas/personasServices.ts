@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
@@ -22,7 +22,10 @@ export class PersonasServices {
 
 
 
-
+  public filtrar(valores:any):Observable<HttpResponse<personaDTO[]>>{
+    const params = new HttpParams({fromObject:valores})
+    return this.http.get<personaDTO[]>(`${this.urlbase}/Filtro`,{params,observe: 'response'})
+  }
 
   public obtenertodos(paginacion: PaginacionDTO): Observable<HttpResponse<personaDTO[]>>{
     let queryparams = contruirQueryParams(paginacion)
