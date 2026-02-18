@@ -33,17 +33,9 @@
   </mat-form-field>
 
 
-
-
-
-
-  <!-- <app-correos formControlName="correos" ></app-correos>
-<app-dirreciones formControlName="dirreciones"></app-dirreciones>
-<app-telefonos formControlName="telefonos"></app-telefonos> -->
-
-      <app-correos [modelo]="correoed" (postcorreo)="agregarcorreo($event)"></app-correos>
-   <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
-  <app-telefonos (posttelefono)="agregartelefono($event)" ></app-telefonos>
+  <app-correos (postcorreo)="agregarcorreo($event)"></app-correos>
+  <app-dirreciones (postdirrecion)="agregardirrecion($event)"></app-dirreciones>
+  <app-telefonos (posttelefono)="agregartelefono($event)"></app-telefonos>
 
 
   <h4>Seleccione Las Categorias</h4>

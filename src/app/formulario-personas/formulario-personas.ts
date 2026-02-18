@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 import { Cargando } from "../componentes/cargando/cargando";
 import { extraererrores } from '../componentes/funciones/extraererrores';
 import { HotToastService, provideHotToastConfig } from '@ngxpert/hot-toast';
+import Swal from 'sweetalert2'
+
+
 
 
 
@@ -26,40 +29,52 @@ import { HotToastService, provideHotToastConfig } from '@ngxpert/hot-toast';
 export class FormularioPersonas {
 
 
-  categoriasSeleccionadas : SelectorMultipleDTO[] = []
-  categoriasNoSeleccionadas : SelectorMultipleDTO[] = []
+  categoriasSeleccionadas: SelectorMultipleDTO[] = []
+  categoriasNoSeleccionadas: SelectorMultipleDTO[] = []
   personasServices = inject(PersonasServices)
   router = inject(Router)
   toast = inject(HotToastService)
-  error: string[]=[]
+  error: string[] = []
 
-   constructor(){
-     this.personasServices.crearGet().subscribe(modelo=>{
-      this.categoriasNoSeleccionadas = modelo.categorias.map(categoria=>{
-        return <SelectorMultipleDTO>{id:categoria.id,tipo:categoria.tipo}
+
+  constructor() {
+    this.personasServices.crearGet().subscribe(modelo => {
+      this.categoriasNoSeleccionadas = modelo.categorias.map(categoria => {
+        return <SelectorMultipleDTO>{ id: categoria.id, tipo: categoria.tipo }
       })
-     })
-   }
+    })
+  }
 
-  guardarPersonas(persona: CrearpersonaDTO){
-     this.personasServices.crear(persona).subscribe({
-       next: persona=>{
-         console.log(persona)
-         this.router.navigate(['/listado-personas'])
-         this.toast.success('Persona agragada Correctamente')
+  guardarPersonas(persona: CrearpersonaDTO) {
+
+    this.personasServices.crear(persona).subscribe({
+      next: persona => {
+        Swal.fire({
+          title: "Persona Agregada Correctamente",
+          icon: "success",
+          draggable: true
+        })
+        console.log(persona)
+        this.router.navigate(['/listado-personas'])
+
 
 
       },
-      error: err=>{
+      error: err => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Hubo un erorr al Insertar la Persona",
+        })
         const errores = extraererrores(err)
         this.error = errores
-        this.toast.error('Problemas al inserta la persona', {dismissible:true})
+
       }
-     })
+    })
 
     // console.log(persona)
 
   }
-   
+
 
 }

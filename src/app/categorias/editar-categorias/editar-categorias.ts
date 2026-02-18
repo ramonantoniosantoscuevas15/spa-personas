@@ -6,6 +6,7 @@ import { Cargando } from "../../componentes/cargando/cargando";
 import { Router } from '@angular/router';
 import { extraererrores } from '../../componentes/funciones/extraererrores';
 import { MostrarErrores } from "../../componentes/mostrar-errores/mostrar-errores";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-editar-categorias',
@@ -15,7 +16,7 @@ import { MostrarErrores } from "../../componentes/mostrar-errores/mostrar-errore
 })
 export class EditarCategorias implements OnInit {
   ngOnInit(): void {
-    this.categoriasServices.obtenerporid(this.id).subscribe(categorias=>{
+    this.categoriasServices.obtenerporid(this.id).subscribe(categorias => {
       this.categoria = categorias
     })
 
@@ -23,15 +24,25 @@ export class EditarCategorias implements OnInit {
   @Input({ transform: numberAttribute })
   id!: number
   categoria?: CategoriaDTO
-   categoriasServices = inject(CategoriaServices)
+  categoriasServices = inject(CategoriaServices)
   private router = inject(Router)
   errores: string[] = []
   guardarCategoria(categoria: CrearCategoriaDTO) {
     this.categoriasServices.actualizar(this.id, categoria).subscribe({
       next: () => {
+        Swal.fire({
+          title: "Categoria Actualizada Exitosamente",
+          icon: "success",
+          draggable: true
+        })
         this.router.navigate(['/indice-categoria'])
       },
       error: err => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Hubo un erorr al Actualizar la categoria la Categoria",
+        })
         const errores = extraererrores(err)
         this.errores = errores
 

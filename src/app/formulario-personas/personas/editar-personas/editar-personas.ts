@@ -19,6 +19,8 @@ import moment from 'moment';
 import { EditarCorreos } from "../../correos/editar-correos/editar-correos";
 import { EditarDirreciones } from "../../dirreciones/editar-dirreciones/editar-dirreciones";
 import { EditarTelefonos } from "../../telefonos/editar-telefonos/editar-telefonos";
+import Swal from 'sweetalert2'
+import { extraererrores } from '../../../componentes/funciones/extraererrores';
 
 @Component({
   selector: 'app-editar-personas',
@@ -28,97 +30,51 @@ import { EditarTelefonos } from "../../telefonos/editar-telefonos/editar-telefon
 })
 export class EditarPersonas implements OnInit {
   ngOnInit(): void {
-    this.personasServices.actualizarGet(this.id).subscribe(modelo=>{
-       this.persona= modelo.persona
-       this.correos=modelo.persona.Correos
-       this.categoriasSeleccionadas = modelo.categoriasSeleccionadas
-     this.categoriasNoSeleccionadas = modelo.categoriasNoSeleccionadas.map(categoria =>{
-         return <SelectorMultipleDTO>{id:categoria.id,tipo:categoria.tipo}
+    this.personasServices.actualizarGet(this.id).subscribe(modelo => {
+      this.persona = modelo.persona
+      this.correos = modelo.persona.Correos
+      this.categoriasSeleccionadas = modelo.categoriasSeleccionadas
+      this.categoriasNoSeleccionadas = modelo.categoriasNoSeleccionadas.map(categoria => {
+        return <SelectorMultipleDTO>{ id: categoria.id, tipo: categoria.tipo }
       })
 
-  })
+    })
   }
-  // private fb = inject(FormBuilder)
-  // formUtilidades = FormUtilidades
-  // @Input() modelo?: personaDTO
-  // correos: CrearcorreoDTO[] = []
-  // telefonos: CreartelefonoDTO[] = []
-  // dirreciones: CreardirrecionesDTO[] = []
-  // @Output() postPersona = new EventEmitter<CrearpersonaDTO>()
-  // @Input({ required: true })
-  // categoriasNoSeleccionadas!: SelectorMultipleDTO[]
 
-  // @Input({ required: true })
-  // categoriasSeleccionadas!: SelectorMultipleDTO[]
-  // correosed?: correoDTO
-  // dirrecionesed?: dirrecionesDTO
-  // telefonosed?: telefonoDTO
-    @Input({ transform: numberAttribute })
-   id!: number
-   persona?: personaDTO
-   correos?:correoDTO[]
-    categoriasSeleccionadas!: SelectorMultipleDTO[]
-    categoriasNoSeleccionadas!: SelectorMultipleDTO[]
-    personasServices = inject(PersonasServices)
+  @Input({ transform: numberAttribute })
+  id!: number
+  persona?: personaDTO
+  correos?: correoDTO[]
+  categoriasSeleccionadas!: SelectorMultipleDTO[]
+  categoriasNoSeleccionadas!: SelectorMultipleDTO[]
+  personasServices = inject(PersonasServices)
   router = inject(Router)
+  error: string[] = []
 
-   guardarPersonas(persona: CrearpersonaDTO){
-   this.personasServices.actualizar(this.id,persona).subscribe({
-   next:()=>{
-     this.router.navigate(['/'])
-   }
+  guardarPersonas(persona: CrearpersonaDTO) {
+    this.personasServices.actualizar(this.id, persona).subscribe({
+      next: () => {
+        Swal.fire({
+          title: "Persona Actualizada exitosamente",
+          icon: "success",
+          draggable: true
+        })
+        this.router.navigate(['/listado-personas'])
+      },
+      error: err => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Hubo un erorr al Insertar la Persona",
+              })
+              const errores = extraererrores(err)
+              this.error = errores
 
- })
-
- }
-  // form = this.fb.group({
-
-  //   nombre: ['', { validators: [Validators.required, Validators.minLength(3)] }],
-  //   apellido: ['', { validators: [Validators.required, Validators.minLength(3)] }],
-  //   cedula: [0, [Validators.required, Validators.min(1)]],
-  //   fechanacimiento: new FormControl<Date | null>(null),
-
-  // })
-  // guardarPersonas() {
-
-  //   const persona = this.form.value as CrearpersonaDTO
-
-
-  //   persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
+            }
 
 
+    })
 
-  //   persona.Correos = this.correos
-  //   persona.Dirrecciones = this.dirreciones
-  //   persona.Telefonos = this.telefonos
-  //   const categoriasId = this.categoriasSeleccionadas.map(val => val.id)
+  }
 
-
-  //   persona.CategoriasId = categoriasId
-
-
-
-
-
-
-  //   this.postPersona.emit(persona)
-
-
-
-  // }
-  // editarcorreo(correos: CrearcorreoDTO) {
-  //   this.correos.push(correos)
-
-  //   console.log(this.correos)
-  // }
-  // editardirrecion(dirreciones: CreardirrecionesDTO){
-  //   this.dirreciones.push(dirreciones)
-  //   console.log(this.dirreciones)
-
-  // }
-  // editartelefono(telefono: CreartelefonoDTO){
-  //   this.telefonos.push(telefono)
-  //   console.log(this.telefonos)
-
-  // }
 }

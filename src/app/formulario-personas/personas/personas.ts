@@ -16,6 +16,7 @@ import { SelectorMultipleDTO } from '../../componentes/selector-multiple/selecto
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import moment from 'moment';
 import { Dirreciones } from '../dirreciones/dirreciones';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -24,7 +25,7 @@ import { Dirreciones } from '../dirreciones/dirreciones';
 
 @Component({
   selector: 'app-personas',
-  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, SelectorMultiple, MatDatepickerModule, Dirreciones, Telefonos, Correos],
+  imports: [MatButtonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, FormsModule, SelectorMultiple, MatDatepickerModule, Dirreciones, Telefonos, Correos, SweetAlert2Module],
   templateUrl: './personas.html',
 
 
@@ -66,16 +67,13 @@ export class Personas implements OnInit {
 
     const persona = this.form.value as CrearpersonaDTO
 
-    // correo =this.listadocorreo.map(val=> val.correos)
-
-    // persona.Correos =  correo?.map(correos => ({ correos } as unknown as CrearcorreoDTO))
     persona.fechanacimiento = moment(persona.fechanacimiento).toDate()
 
 
 
-      persona.Correos=this.correos
-       persona.Dirrecciones = this.dirreciones
-      persona.Telefonos = this.telefonos
+    persona.Correos = this.correos
+    persona.Dirrecciones = this.dirreciones
+    persona.Telefonos = this.telefonos
     const categoriasId = this.categoriasSeleccionadas.map(val => val.id)
 
 
