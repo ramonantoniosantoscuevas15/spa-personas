@@ -10,6 +10,9 @@ import { SelectorMultipleDTO } from '../componentes/selector-multiple/selector-m
 import { PersonasServices } from './personas/personasServices';
 import { Router } from '@angular/router';
 import { Cargando } from "../componentes/cargando/cargando";
+import { extraererrores } from '../componentes/funciones/extraererrores';
+import { HotToastService, provideHotToastConfig } from '@ngxpert/hot-toast';
+
 
 
 
@@ -27,6 +30,8 @@ export class FormularioPersonas {
   categoriasNoSeleccionadas : SelectorMultipleDTO[] = []
   personasServices = inject(PersonasServices)
   router = inject(Router)
+  toast = inject(HotToastService)
+  error: string[]=[]
 
    constructor(){
      this.personasServices.crearGet().subscribe(modelo=>{
@@ -40,12 +45,21 @@ export class FormularioPersonas {
      this.personasServices.crear(persona).subscribe({
        next: persona=>{
          console.log(persona)
-         this.router.navigate(['/'])
+         this.router.navigate(['/listado-personas'])
+         this.toast.success('Persona agragada Correctamente')
 
+
+      },
+      error: err=>{
+        const errores = extraererrores(err)
+        this.error = errores
+        this.toast.error('Problemas al inserta la persona', {dismissible:true})
       }
      })
+
     // console.log(persona)
 
   }
+   
 
 }

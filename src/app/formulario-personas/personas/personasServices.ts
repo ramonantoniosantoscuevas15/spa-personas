@@ -26,6 +26,13 @@ export class PersonasServices {
     const params = new HttpParams({fromObject:valores})
     return this.http.get<personaDTO[]>(`${this.urlbase}/Filtro`,{params,observe: 'response'})
   }
+  public buscar(valor:any):Observable<HttpResponse<personaDTO[]>>{
+    const params = new HttpParams({fromObject:valor})
+    return this.http.get<personaDTO[]>(`${this.urlbase}/buscar`,{params,observe:'response'})
+  }
+  public obtenerpersonas():Observable<personaDTO[]>{
+      return this.http.get<personaDTO[]>(`${this.urlbase}/todos`)
+     }
 
   public obtenertodos(paginacion: PaginacionDTO): Observable<HttpResponse<personaDTO[]>>{
     let queryparams = contruirQueryParams(paginacion)

@@ -6,6 +6,7 @@ import{provideMomentDateAdapter} from '@angular/material-moment-adapter';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2'
+import {provideHotToastConfig} from '@ngxpert/hot-toast'
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -25,7 +26,10 @@ export const appConfig: ApplicationConfig = {
 
     }),
     provideHttpClient(withFetch()),
-    importProvidersFrom([SweetAlert2Module.forRoot()])
+    importProvidersFrom([SweetAlert2Module.forRoot()]),
+    provideHotToastConfig()
   ]
 
 };
+
+

@@ -15,6 +15,7 @@ import { EditarDirreciones } from './formulario-personas/dirreciones/editar-dirr
 import { EditarTelefonos } from './formulario-personas/telefonos/editar-telefonos/editar-telefonos';
 import { EditarFormulario } from './formulario-personas/editar-formulario/editar-formulario';
 import { Filtropersonas } from './formulario-personas/personas/filtropersonas/filtropersonas';
+import { Bucarpersona } from './formulario-personas/personas/bucarpersona/bucarpersona';
 
 export const routes: Routes = [
   // {
@@ -112,6 +113,10 @@ export const routes: Routes = [
     path:'filtropersonas',
     component:Filtropersonas
 
+  },
+  {
+    path:'bucarpersona',
+    component:Bucarpersona
   },
   {
     path: '**',

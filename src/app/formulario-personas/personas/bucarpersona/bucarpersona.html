@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput [formControl] = "form.controls.nombre">
+  </mat-form-field>
+
+  <div>
+    <button (click)="limpiar()" mat-flat-button class="warn">Limpiar</button>
+  </div>
+</form>
+<app-listado [personas]="personas"></app-listado>
